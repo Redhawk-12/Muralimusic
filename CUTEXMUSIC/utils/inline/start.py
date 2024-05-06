@@ -93,7 +93,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
                     ),
            InlineKeyboardButton(
                text="sᴜᴘᴘᴏʀᴛ",
-               url=f"https://t.me/MUSIC_WORL_SH"
+               url=f"https://t.me/ZeroXCoderZ"
            ),
         ],
       [
