@@ -314,7 +314,7 @@ zbutton = [
     ],
 ]
 
-
+import nekos
 
 @app.on_message(filters.command(["alive", "credits", "credit"] ,prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
 async def allcredisofall(client, message):
@@ -330,7 +330,7 @@ async def allcredisofall(client, message):
     await stic.delete()
     await All.delete()
     x = await message.reply_photo(
-        photo="https://telegra.ph/file/a69648ae66a779fb5abe4.jpg",
+        photo=nekos.img("neko"),
         caption=f""" 
         **
 ────「 {app.mention} 」────
@@ -345,7 +345,7 @@ async def allcredisofall(client, message):
 
 
 ┏━━━━━━━━━━━━━━━━━┓
-┣★  𝑫𝑬𝑽𝑬𝑳𝑶𝑷𝑬𝑹  ➪ || [𝑪𝑳𝑰𝑪𝑲 𝑯𝑬𝑹𝑬](tg://openmessage?user_id=6761639198)  ||
+┣★  𝑫𝑬𝑽𝑬𝑳𝑶𝑷𝑬𝑹  ➪ || [𝑪𝑳𝑰𝑪𝑲 𝑯𝑬𝑹𝑬](tg://openmessage?user_id=6844821478)  ||
 ┗━━━━━━━━━━━━━━━━━┛
 
 <b><u>Cʀᴇᴅɪᴛs : </b></u>
@@ -362,7 +362,7 @@ async def allcredisofall(client, message):
 """,
         reply_markup=InlineKeyboardMarkup(zbutton),
     )
-    await asyncio.sleep(10)
+    await asyncio.sleep(13)
     await message.delete()
     await x.delete()
 
