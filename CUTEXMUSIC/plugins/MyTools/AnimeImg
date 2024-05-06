@@ -1,0 +1,94 @@
+from pyrogram import Client, filters
+import requests
+from pyrogram import *
+import os
+import time 
+import random
+from pyrogram.errors import MessageNotModified
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, Message)
+from pyrogram.types import InputMediaPhoto
+from typing import Union
+from CUTEXMUSIC import app
+
+pht_list = ["neko", "waifu"]
+pht = random.choice(pht_list)
+url = f"https://api.waifu.pics/sfw/{pht}"
+
+@app.on_message(filters.command("Anime"))
+async def zget_waifu(client, message):
+    response = requests.get(url).json()
+    try:
+        up = response['url']
+        but = [
+            [
+                InlineKeyboardButton(
+                    "ᴋɪᴅɴᴀᴘ Mᴇ ✨",
+                    url=f"https://t.me/CutieXmusicBot?startgroup=true",
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    "ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️",
+                    callback_data="again",
+                ),
+                InlineKeyboardButton(
+                    "ᴏᴡɴᴇʀ 💕",
+                    url=f"tg://openmessage?user_id=6761639198",
+                ),
+            ],
+            [
+              InlineKeyboardButton(
+                "ᴄʟᴏsᴇ",
+                callback_data=f"close",
+              ),
+            ],
+        ]
+        markup = InlineKeyboardMarkup(but)
+        await message.reply_photo(up, caption="|| ᴍᴀᴅᴇ ʙʏ 𝐂𝐔𝐓𝐄 ꨄ︎ 𝐁𝐀𝐂𝐇𝐇𝐀 💕 ||", reply_markup=markup)
+    except KeyError:
+        await message.reply("Request failed, try again later.")
+
+@app.on_callback_query(filters.regex("again"))
+async def handle_callback(client: app, update: Union[types.Message, types.CallbackQuery]):
+    response = requests.get(url).json()
+    try:
+        up = response['url']
+        but = [
+            [
+                InlineKeyboardButton(
+                    "ᴋɪᴅɴᴀᴘ Mᴇ ✨",
+                    url=f"https://t.me/CutieXmusicBot?startgroup=true",
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    "ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️",
+                    callback_data="again",
+                ),
+                InlineKeyboardButton(
+                    "ᴏᴡɴᴇʀ 💕",
+                    url=f"tg://openmessage?user_id=6761639198",
+                ),
+            ],
+            [
+              InlineKeyboardButton(
+                "ᴄʟᴏsᴇ",
+                callback_data=f"close",
+              ),
+            ],
+        ]
+        is_callback = isinstance(update, types.CallbackQuery)
+        if is_callback:
+            try:
+                await update.answer()
+            except:
+                pass
+            chat_id = update.message.chat.id
+            await update.message.edit_media(
+                media=InputMediaPhoto(up),
+                reply_markup=InlineKeyboardMarkup(but)
+            )
+    except KeyError:
+        await update.message.reply("Request failed, try again later.")
+      

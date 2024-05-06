@@ -1,0 +1,102 @@
+# this code is working  but other not works
+
+
+
+from pyrogram import Client, filters, types, enums
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from motor.motor_asyncio import AsyncIOMotorClient
+import requests
+from config import *
+# Initialize Pyrogram client and MongoDB client
+from CUTEXMUSIC import app
+
+mongo_client = AsyncIOMotorClient(CUTE_BACHHA_DB)
+db = mongo_client.chatbotdbb
+chatbotdatabase = db.chatbotdbbb
+
+# Function to check if the user is an admin
+async def is_admin(chat_id: int, user_id: int) -> bool:
+    member = await app.get_chat_member(chat_id, user_id)
+    return member.status in [enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER]
+
+# Command to trigger enabling/disabling chatbot
+@app.on_message(filters.command("chatbot") & filters.group)
+async def chatbot_command(_, message: Message):
+    # Check if the user is an admin
+    if await is_admin(message.chat.id, message.from_user.id):
+        # Generate inline buttons for enabling/disabling chatbot
+        keyboard = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(text="Enable", callback_data="enable_chatbot"),
+                    InlineKeyboardButton(text="Disable", callback_data="disable_chatbot"),
+                ]
+            ]
+        )
+        # Send message with inline keyboard
+        await message.reply_text("Choose an option:", reply_markup=keyboard)
+    else:
+        # Send message that only admins can enable/disable chatbot
+        await message.reply_text("You are not an admin in this group.")
+
+# Handle callback query for enabling/disabling chatbot
+@app.on_callback_query(filters.regex(r"^(enable|disable)_chatbot$"))
+async def enable_disable_chatbot(_, query: types.CallbackQuery):
+    chat_id = query.message.chat.id
+    action = query.data  # Either "enable_chatbot" or "disable_chatbot"
+    
+    # Check if the user is an admin
+    if await is_admin(chat_id, query.from_user.id):
+        if action == "enable_chatbot":
+            # Check if chat ID already exists in database
+            if await chatbotdatabase.find_one({"chat_id": chat_id}):
+                await query.answer("Chatbot is already enabled.")
+            else:
+                # Add chat ID to database
+                await chatbotdatabase.insert_one({"chat_id": chat_id, "admin_id": query.from_user.id})
+                await query.answer("Chatbot enabled successfully!")
+                # Edit message to notify about enabling chatbot
+                await query.message.edit_text(f"Chatbot enabled by {query.from_user.mention()}")
+        else:
+            # Check if chat ID exists in database
+            chatbot_info = await chatbotdatabase.find_one({"chat_id": chat_id})
+            if chatbot_info:
+                # Remove chat ID from database
+                await chatbotdatabase.delete_one({"chat_id": chat_id})
+                await query.answer("Chatbot disabled successfully!")
+                # Edit message to notify about disabling chatbot
+                await query.message.edit_text("Chatbot disabled.")
+            else:
+                await query.answer("Chatbot is not enabled for this chat.")
+    else:
+        # Send message that only admins can enable/disable chatbot
+        await query.answer("You are not an admin in this group.")
+
+
+
+@app.on_message(filters.group)
+async def handle_message(client: Client, message: Message):
+    try:
+        chat_id = message.chat.id
+        
+        # Check if the message is a reply and if it's from the bot itself
+        if message.reply_to_message and message.reply_to_message.from_user.is_self:
+            # Check if the replied message contains "/"
+            if "/" in message.reply_to_message.text:
+                # Check if chatbot is enabled
+                chatbot_info = await chatbotdatabase.find_one({"chat_id": chat_id})
+                if chatbot_info:
+                    user_id = message.from_user.id
+                    user_message = message.text
+                    api_url = f"http://api.brainshop.ai/get?bid=180331&key=1EGyiLpUu4Vv6mwy&uid={user_id}&msg={user_message}"
+                    response = requests.get(api_url).json()["cnt"]
+                    await message.reply_text(response)
+                    pass
+                else:
+                    pass  # If chatbot is not enabled, do nothing
+            else:
+                pass  # If replied message does not contain "/", do nothing
+        else:
+            pass  # If the message is not a reply or not from the bot itself, do nothing
+    except Exception as e:
+        pass 

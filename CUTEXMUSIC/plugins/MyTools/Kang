@@ -1,0 +1,201 @@
+# THIS IS NOT WORKING 
+
+
+import os
+from asyncio import gather
+from random import choice
+from traceback import format_exc
+
+from pyrogram.errors import (PeerIdInvalid, ShortnameOccupyFailed,
+                             StickerEmojiInvalid, StickerPngDimensions,
+                             StickerPngNopng, StickerTgsNotgs,
+                             StickerVideoNowebm, UserIsBlocked)
+from pyrogram.types import InlineKeyboardButton as IKB
+from pyrogram.types import InlineKeyboardMarkup as IKM
+from pyrogram.types import Message
+from pyrogram import filters 
+
+from CUTEXMUSIC import app, LOGGER
+from CUTEXMUSIC.utils.database.cutestdb import *
+
+@app.on_message(filters.command(["kang", "steal"]))
+async def kang(c:app, m: Message):
+    if not m.reply_to_message:
+        return await m.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ sᴛɪᴄᴋᴇʀ ᴏʀ ɪᴍᴀɢᴇ ᴛᴏ ᴋᴀɴɢ ɪᴛ.")
+    elif not (m.reply_to_message.animation or m.reply_to_message.sticker or m.reply_to_message.photo or (m.reply_to_message.document and m.reply_to_message.document.mime_type.split("/")[0]in["image","video"])):
+        return await m.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ sᴛɪᴄᴋᴇʀ ᴏʀ ɪᴍᴀɢᴇ ᴛᴏ ᴋᴀɴɢ ɪᴛ.")
+    if not m.from_user:
+        return await m.reply_text("ʏᴏᴜ ᴀʀᴇ ᴜɴᴋɴᴏᴡɴ ғᴏʀ ᴍᴇ, ᴋᴀɴɢ sᴛɪᴄᴋᴇʀs ɪɴ ᴍʏ ᴘᴍ.")
+    msg = await m.reply_text("ᴋᴀɴɢɪɴɢ sᴛɪᴄᴋᴇʀ..")
+    is_requ = False
+    if m.reply_to_message.sticker:
+        if m.reply_to_message.sticker.is_animated or m.reply_to_message.sticker.is_video:
+            is_requ = True
+    # Find the proper emoji
+    args = m.text.split()
+    if len(args) > 1:
+        sticker_emoji = str(args[1])
+    elif m.reply_to_message.sticker:
+        try:
+          sticker_emoji = m.reply_to_message.sticker.emoji
+        except Exception:
+          ran = ["🤣", "😑", "😁", "👍", "🔥", "🙈", "🙏", "😍", "😘", "😱", "☺️", "🙃", "😌", "🤧", "😐", "😬", "🤩", "😀", "🙂", "🥹", "🥺", "🫥", "🙄", "🫡", "🫠", "🤫", "😓", "🥵", "🥶", "😤", "😡", "🤬", "🤯", "🥴", "🤢", "🤮", "💀", "🗿", "💩", "🤡", "🫶", "🙌", "👐", "✊", "👎", "🫰", "🤌", "👌", "👀", "💃", "🕺", "👩‍❤️‍💋‍👩", "👩‍❤️‍💋‍👨","👨‍❤️‍👨", "💑", "👩‍❤️‍👩", "👩‍❤️‍👨", "💏", "👨‍❤️‍💋‍👨", "😪", "😴", "😭", "🥸", "🤓", "🫤", "😮", "😧", "😲", "🥱", "😈", "👿", "🤖", "👾", "🙌", "🥴", "🥰", "😇", "🤣" ,"😂", "😜", "😎"]
+          sticker_emoji = choice(ran)
+    else:
+        edit = await msg.reply_text("ɴᴏ ᴇᴍᴏᴊɪ ᴘʀᴏᴠɪᴅᴇᴅ ᴄʜᴏᴏsɪɴɢ ᴀ ʀᴀɴᴅᴏᴍ ᴇᴍᴏᴊɪ")
+        ran = ["🤣", "😑", "😁", "👍", "🔥", "🙈", "🙏", "😍", "😘", "😱", "☺️", "🙃", "😌", "🤧", "😐", "😬", "🤩", "😀", "🙂", "🥹", "🥺", "🫥", "🙄", "🫡", "🫠", "🤫", "😓", "🥵", "🥶", "😤", "😡", "🤬", "🤯", "🥴", "🤢", "🤮", "💀", "🗿", "💩", "🤡", "🫶", "🙌", "👐", "✊", "👎", "🫰", "🤌", "👌", "👀", "💃", "🕺", "👩‍❤️‍💋‍👩", "👩‍❤️‍💋‍👨","👨‍❤️‍👨", "💑", "👩‍❤️‍👩", "👩‍❤️‍👨", "💏", "👨‍❤️‍💋‍👨", "😪", "😴", "😭", "🥸", "🤓", "🫤", "😮", "😧", "😲", "🥱", "😈", "👿", "🤖", "👾", "🙌", "🥴", "🥰", "😇", "🤣" ,"😂", "😜", "😎"]
+        sticker_emoji = choice(ran)
+        await edit.delete()
+    await msg.edit_text(f"ᴍᴀᴋᴇɪɴɢ ᴀ sᴛɪᴄᴋᴇʀ ᴡɪᴛʜ {sticker_emoji} ᴇᴍᴏᴊɪ")
+
+    # Get the corresponding fileid, resize the file if necessary
+    try:
+        if is_requ or m.reply_to_message.animation or m.reply_to_message.video or m.reply_to_message.photo or (m.reply_to_message.document and m.reply_to_message.document.mime_type.split("/")[0] in ["video","image"]):
+            # telegram doesn't allow animated and video sticker to be kanged as we do for normal stickers
+            if m.reply_to_message.animation or m.reply_to_message.video or (m.reply_to_message.document and m.reply_to_message.document.mime_type.split("/")[0] == "video"):
+                path = await Vsticker(c, m.reply_to_message)
+                SIZE = os.path.getsize(path)
+                if SIZE > 261120:
+                    await m.reply_text("File is too big")
+                    os.remove(path)
+                    return
+            elif is_requ:
+                path = await m.reply_to_message.download() 
+            else:
+                sizee = (await get_file_size(m.reply_to_message)).split()
+                if (sizee[1] == "mb" and int(sizee[0]) > 10) or sizee[1] == "gb":
+                    await m.reply_text("ғɪʟᴇ sɪᴢᴇ ɪs ᴛᴏᴏ ʙɪɢ")
+                    return
+                path = await m.reply_to_message.download()
+                path = await resize_file_to_sticker_size(path)
+            sticker = await create_sticker(
+                await upload_document(
+                    c, path, m.chat.id
+                ),
+                sticker_emoji
+            )
+            os.remove(path)
+        elif m.reply_to_message.sticker and not is_requ:
+            sticker = await create_sticker(
+                await get_document_from_file_id(
+                    m.reply_to_message.sticker.file_id
+                ),
+                sticker_emoji
+            )
+        else:
+          await m.reply_text("ᴜɴsᴜᴘᴘᴏʀᴛᴇᴅ ᴍᴇᴅɪᴀ ғɪʟᴇ...")
+          return
+    except ShortnameOccupyFailed:
+        await m.reply_text("ᴄʜᴀɴɢᴇ ʏᴏᴜʀ ɴᴀᴍᴇ ᴏʀ ᴜsᴇʀɴᴀᴍᴇ")
+        return
+
+    except Exception as e:
+        await m.reply_text(str(e))
+        e = format_exc()
+        LOGGER.error(e)
+        LOGGER.error(format_exc())
+
+    # Find an available pack & add the sticker to the pack; create a new pack if needed
+    # Would be a good idea to cache the number instead of searching it every single time...
+    kang_lim = 120
+    st_in = m.reply_to_message.sticker 
+    st_type = "img"
+    is_anim = is_vid = False
+    if st_in:
+        if st_in.is_animated:
+            st_type = "ani"
+            kang_lim = 50
+            is_anim = True
+        elif st_in.is_video:
+            st_type = "vid"
+            kang_lim = 50
+            is_vid = True
+    elif m.reply_to_message.document:
+        if m.reply_to_message.document.mime_type in ["application/x-bad-tgsticker", "application/x-tgsticker"]:
+            st_type = "ani"
+            kang_lim = 50
+            is_anim = True
+        elif m.reply_to_message.document.mime_type == "video/webm":
+            st_type = "vid"
+            kang_lim = 50
+            is_vid = True
+    elif m.reply_to_message.video or m.reply_to_message.animation or (m.reply_to_message.document and m.reply_to_message.document.mime_type.split("/")[0] == "video"):
+        st_type = "vid"
+        kang_lim = 50
+        is_vid = True
+    packnum = 0
+    limit = 0
+    volume = 0
+    packname_found = False
+
+    try:
+        while not packname_found:
+            packname = f"CE{str(m.from_user.id)}{st_type}{packnum}_by_MISS_PRIYA_ROBOT"
+            kangpack = f"{('@'+m.from_user.username) if m.from_user.username else m.from_user.first_name[:10]} {st_type} {('vOl '+str(volume)) if volume else ''} by @MISS_PRIYA_ROBOT"
+            if limit >= 50: # To prevent this loop from running forever
+                await m.reply_text("ғᴀɪʟᴇᴅ ᴛᴏ ᴋᴀɴɢ\n ᴍᴀʏ ʙᴇ ʏᴏᴜ ʜᴀᴠᴇ ᴍᴀᴅᴇ ᴍᴏʀᴇ ᴛʜᴀɴ 50 sᴛɪᴄᴋᴇʀ ᴘᴀᴄᴋs ᴡɪᴛʜ ᴍᴇ ᴛʀʏ ᴅᴇʟᴇᴛɪɴɢ sᴏᴍᴇ")
+                return
+            sticker_set = await get_sticker_set_by_name(c,packname)
+            if not sticker_set:
+                sticker_set = await create_sticker_set(
+                    client=c,
+                    owner=m.from_user.id,
+                    title=kangpack,
+                    short_name=packname,
+                    stickers=[sticker],
+                    animated=is_anim,
+                    video=is_vid
+                )
+            elif sticker_set.set.count >= kang_lim:
+                packnum += 1
+                limit += 1
+                volume += 1
+                continue
+            else:
+                try:
+                    await add_sticker_to_set(c,sticker_set,sticker)
+                except StickerEmojiInvalid:
+                    return await msg.edit("[ERROR]: INVALID_EMOJI_IN_ARGUMENT")
+            limit += 1
+            packname_found = True
+        kb = IKM(
+            [
+                [
+                    IKB(" ᴀᴅᴅ ᴘᴀᴄᴋ ",url=f"t.me/addstickers/{packname}")
+                ]
+            ]
+        )
+        await msg.delete()
+        await m.reply_text(
+            f"**ᴋᴀɴɢᴇᴅ ᴛʜᴇ sᴛɪᴄᴋᴇʀ** \n\nᴘᴀᴄᴋ ɴᴀᴍᴇ: `{kangpack}`\nᴇᴍᴏᴊɪ: {sticker_emoji}",
+            reply_markup=kb
+        )
+    except (PeerIdInvalid, UserIsBlocked):
+        keyboard = IKM(
+            [[IKB("Start me first", url=f"t.me/MISS_PRIYA_ROBOT")]]
+        )
+        await msg.delete()
+        await m.reply_text(
+            "ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ sᴛᴀʀᴛ ᴀ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ With ᴍᴇ.",
+            reply_markup=keyboard,
+        )
+    except StickerPngNopng:
+        await msg.delete()
+        await m.reply_text(
+            "sᴛɪᴄᴋᴇʀs ᴍᴜsᴛ ʙᴇ ᴘɴɢ ғɪʟᴇs ʙᴜᴛ ᴛʜᴇ ᴘʀᴏᴠɪᴅᴇᴅ ɪᴍᴀɢᴇ ᴡᴀs ɴᴏᴛ ᴀ ᴘɴɢ"
+        )
+    except StickerPngDimensions:
+        await msg.delete()
+        await m.reply_text("ᴛʜᴇ sᴛɪᴄᴋᴇʀ ᴘɴɢ ᴅɪᴍᴇɴsɪᴏɴs ᴀʀᴇ ɪɴᴠᴀʟɪᴅ.")
+    except StickerTgsNotgs:
+        await msg.delete()
+        await m.reply_text("sᴛɪᴄᴋᴇʀ ᴍᴜsᴛ ʙᴇ ᴛɢs ғɪʟᴇ ʙᴜᴛ ᴛʜᴇ ᴘʀᴏᴠɪᴅᴇᴅ ғɪʟᴇ ᴡᴀs ɴᴏᴛ ᴛɢs")
+    except StickerVideoNowebm:
+        await msg.delete()
+        await m.reply_text("sᴛɪᴄᴋᴇʀ ᴍᴜsᴛ ʙᴇ ᴡᴇʙᴍ ғɪʟᴇ ʙᴜᴛ ᴛʜᴇ ᴘʀᴏᴠɪᴅᴇᴅ ғɪʟᴇ ᴡᴀs ɴᴏᴛ ᴡᴇʙᴍ")
+    except Exception as e:
+        await msg.delete()
+        await m.reply_text(f"ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ\n{e}")
+        LOGGER.error(e)
+        LOGGER.error(format_exc())
+    return
