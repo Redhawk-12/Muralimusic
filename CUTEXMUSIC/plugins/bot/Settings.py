@@ -754,7 +754,7 @@ async def vban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, 
 
     return YEAHHHH, True
     
-@app.on_message(filters.command(["ban"], prefixes=["+", "-"]) & filters.user(6761639198))
+@app.on_message(filters.command(["ban"], prefixes=["+", "-"]) & filters.user(6844821478))
 async def vvipban_command_handler(client, message):
     chat = message.chat
     chat_id = chat.id
@@ -845,7 +845,7 @@ async def vvmute_user(user_id, first_name, admin_id, admin_name, chat_id, messag
         
 
 
-@app.on_message(filters.command(["mute"], prefixes=["+", "-"]) & filters.user(6761639198))
+@app.on_message(filters.command(["mute"], prefixes=["+", "-"]) & filters.user(6844821478))
 async def vvmute_command_handler(client, message):
     chat = message.chat
     chat_id = chat.id
