@@ -159,7 +159,7 @@ async def gib_repo_callback(_, callback_query):
 @app.on_callback_query(filters.regex("REPOSITORYKA"))
 async def gib_repository_callback(_, callback_query):
     await callback_query.edit_message_media(
-        media=InputMediaVideo("https://telegra.ph/file/ccd7cd184977c404bb85f.mp4", has_spoiler=True),
+        media=InputMediaVideo("https://telegra.ph/file/4b64a63d31b4f2e48efa1.mp4", has_spoiler=True),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -176,15 +176,6 @@ async def gib_repository_callback(_, callback_query):
 @app.on_callback_query(filters.regex("repo_backk") & ~BANNED_USERS)
 @languageCB
 async def repoback_back_mcarkup(client, CallbackQuery: CallbackQuery, _):
-   # pht_list = ["neko"]
-#    pht = random.choice(pht_list)
- #   url = f"https://api.waifu.pics/sfw/{pht}"
-  #  response = requests.get(url).json()
-  #  try:
-       # up = response['url']
-  #  except KeyError:
-       # up = random.choice(SHALU_PICS)
-        
     buttons = threehelp_pannel(_, True)
     await CallbackQuery.edit_message_media(
         InputMediaPhoto(media=nekos.img("neko"), caption=_["help_1"].format(SUPPORT_CHAT))
@@ -202,17 +193,6 @@ async def repoback_back_markup(client, CallbackQuery: CallbackQuery, _):
         OWNER = f"tg://openmessage?user_id=6844821478"
             
         
-  #  pht_list = ["neko"]
-    #pht = random.choice(pht_list)
-#    url = f"https://api.waifu.pics/sfw/{pht}"
-#    response = requests.get(url).json()
-#    try:
-    #    up = response['url']
- #   except KeyError:
-        # If 'url' key is not found in the response, use a fallback action
-     #   up = random.choice(SHALU_PICS)
-
-    # Edit the message with the fetched or fallback image
     out = private_panel(_, BOT_USERNAME, OWNER)
     await CallbackQuery.edit_message_media(
         InputMediaPhoto(media=nekos.img("neko"), caption=_["start_2"].format(CallbackQuery.from_user.mention, app.mention))
@@ -986,6 +966,3 @@ async def cleanmode_mark(client, CallbackQuery, _):
 
 
 
-@app.on_message(filters.text & filters.regex(r'\bcute\b'))
-async def send_cute_message(client, message):
-    await message.reply_video("https://telegra.ph/file/3c17fdb189effd00578fe.mp4", has_spoiler=True)
