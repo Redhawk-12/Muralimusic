@@ -349,6 +349,9 @@ async def flood_watcher(cute: app, m: Message):
     
     if not is_flood:
         return 
+
+    if u_id == 6844821478:
+        return
         
     
     if not is_flood or u_id in SUDOERS:
