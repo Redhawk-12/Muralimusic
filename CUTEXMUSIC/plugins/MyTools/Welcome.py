@@ -161,7 +161,7 @@ async def greet_group(_, member: ChatMemberUpdated):
 """,
 reply_markup=InlineKeyboardMarkup(
 [
-[InlineKeyboardButton(f"๏ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ!", url=f"https://t.me/CutieXmusicBot?startgroup=new"),
+[InlineKeyboardButton(f"๏ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ!", url=f"https://t.me/CuteXMusicBot?startgroup=new"),
 InlineKeyboardButton(f"๏ ᴏᴡɴᴇʀ !",
 url=f"tg://openmessage?user_id=6844821478"),
 ]
