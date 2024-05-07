@@ -35,7 +35,7 @@ KICKIMG = [
 button = [
        [
             InlineKeyboardButton(
-                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CutieXmusicBot?startgroup=true",
+                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CuteXMusicBot?startgroup=true",
             ),
            InlineKeyboardButton(
                text="• Dᴇʟᴇᴛᴇ •",
@@ -63,7 +63,7 @@ async def get_userid_from_username(username):
     return user_obj
 
 async def zkick_user(user_id, first_name, admin_id, admin_name, chat_id, message):
-    if user_id == 6761639198:
+    if user_id == 6844821478:
             msg_text = "Why should I ban myself? Sorry, but I'm not stupid like you"
             return msg_text, False
     try:
