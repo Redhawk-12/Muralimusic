@@ -13,7 +13,7 @@ BUTTON = InlineKeyboardMarkup(
         [
             InlineKeyboardButton(
                 text="ᴋɪᴅɴᴀᴘ ᴍᴇ",
-                url="https://t.me/CutieXmusicBot?startgroup=new",
+                url="https://t.me/CuteXMusicBot?startgroup=new",
             ),
             InlineKeyboardButton(
                 text="〆 ᴄʟᴏsᴇ 〆",
