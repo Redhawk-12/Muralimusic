@@ -15,7 +15,7 @@ from CUTEXMUSIC.utils.database.afkdb import add_afk, is_afk, remove_afk
 button = [
        [
             InlineKeyboardButton(
-                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CutieXmusicBot?startgroup=new",
+                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CuteXMusicBot?startgroup=new",
             ),
             InlineKeyboardButton(
                    text="〆 ᴄʟᴏsᴇ 〆", callback_data=f"close",
