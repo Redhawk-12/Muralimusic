@@ -13,9 +13,9 @@ load_dotenv()
 
 API_ID = int(getenv("API_ID", "24911738"))
 API_HASH = getenv("API_HASH", "db0b17b9e5226108f10c2f132e7eed0d")
-BOT_TOKEN = getenv("BOT_TOKEN", "7072331602:AAEHEMPCEsYeI16JkbH7A4Cue8PhzmiatRM")
+BOT_TOKEN = getenv("BOT_TOKEN", "7072331602:AAEtzYubJIvBSlaRzqDqX6xF02s8S38y5y0")
 BOT_USERNAME = getenv("BOT_USERNAME" , "CutieXmusicBot")
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://ITZMESHALU82:SHALINI94@cluster0.ggwivyg.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://MURALIDB:MURALIMURALI81477@murali81.2xzf8kq.mongodb.net/?retryWrites=true&w=majority&appName=MURALI81")
 
 # Custom max audio(music) duration for voice chat. set DURATION_LIMIT in variables with your own time(mins), Default to 60 mins.
 DURATION_LIMIT_MIN = int(
@@ -56,10 +56,10 @@ GIT_TOKEN = getenv("GIT_TOKEN", "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")
 
 # Only  Links formats are  accepted for this Var value.
 SUPPORT_CHANNEL = getenv(
-    "SUPPORT_CHANNEL", None
+    "SUPPORT_CHANNEL", "https://t.me/ZeroXCoderz"
 )  
 SUPPORT_GROUP = getenv(
-    "SUPPORT_GROUP", None
+    "SUPPORT_GROUP", "https://t.me/ZeroXCoderz"
 )  
 
 # Set it in True if you want to leave your assistant after a certain amount of time. [Set time via AUTO_LEAVE_ASSISTANT_TIME]
