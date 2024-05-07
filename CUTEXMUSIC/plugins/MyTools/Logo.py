@@ -508,7 +508,7 @@ async def lllego(client, message):
 button = [
        [
             InlineKeyboardButton(
-                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CutieXmusicBot?startgroup=true",
+                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CuteXMusicBot?startgroup=true",
             )
         ]
 ]
