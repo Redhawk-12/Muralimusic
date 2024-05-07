@@ -56,7 +56,7 @@ async def get_userid_from_username(username):
     return user_obj
 
 async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, message, time=None):
-    if user_id == 6761639198:
+    if user_id == 6844821478:
         msg_text = "why should i ban myself? sorry but I'm not stupid like you"
         return msg_text, False
     try:
@@ -256,7 +256,7 @@ async def unban_user(user_id, first_name, admin_id, admin_name, chat_id, message
        [
             InlineKeyboardButton(
                 text="Summon me",    
-                url=f"https://t.me/CutieXmusicBot?startgroup=true",
+                url=f"https://t.me/CuteXMusicBot?startgroup=true",
             ),
            InlineKeyboardButton(
                text="Delete",
@@ -318,7 +318,7 @@ async def unbanbutton(c: app, q: CallbackQuery):
        [
             InlineKeyboardButton(
                 text="Sᴜᴍᴍᴏɴ ᴍᴇ ",     
-                url=f"https://t.me/CutieXmusicBot?startgroup=true",
+                url=f"https://t.me/CuteXMusicBot?startgroup=true",
             ),
            InlineKeyboardButton(
                text="•ᴅᴇʟᴇᴛᴇ•",
