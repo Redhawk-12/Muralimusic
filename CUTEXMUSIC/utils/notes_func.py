@@ -296,7 +296,7 @@ async def exceNoteMessageSender(message, note_name, from_chat_id=None):
 zbutton = [
        [
             InlineKeyboardButton(
-                text="ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 😘",     url=f"https://t.me/CutieXmusicBot?startgroup=true",
+                text="ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 😘",     url=f"https://t.me/CuteXMusicBot?startgroup=true",
             )
         ],
     [
