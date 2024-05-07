@@ -1,5 +1,5 @@
 from CUTEXMUSIC import app
-from config import BOT_USERNAME
+from config import BOT_USERNAME, OWNER_ID
 from pyrogram import filters
 from pyrogram.types import (
     InlineQueryResultArticle, InputTextMessageContent,
@@ -82,7 +82,7 @@ async def whispes_cb(_, query):
     to_user = int(data[2])
     user_id = query.from_user.id
 
-    if user_id not in [from_user, to_user, 6761639198]:
+    if user_id not in [from_user, to_user, OWNER_ID]:
         try:
             await _.send_message(from_user, f"{query.from_user.mention} is trying to open your whisper.")
         except Unauthorized:
@@ -111,7 +111,7 @@ async def in_help():
         InlineQueryResultArticle(
             title="💒 Whisper",
             description=f"@CutieXmusicBot [USERNAME | ID] [TEXT]",
-            input_message_content=InputTextMessageContent(f"**📍Usage:**\n\n@CutieXmusicBot (Target Username or ID) (Your Message).\n\n**Example:**\n@CutieXmusicBot @username Hello"),
+            input_message_content=InputTextMessageContent(f"**📍Usage:**\n\n@CuteXMusicBot (Target Username or ID) (Your Message).\n\n**Example:**\n@CuteXMusicBot @username Hello"),
             thumb_url="https://telegra.ph/file/3cff0c7f998091b0cf4ee.jpg",
             reply_markup=switch_btn
         )
