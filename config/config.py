@@ -15,7 +15,7 @@ API_ID = int(getenv("API_ID", "24911738"))
 API_HASH = getenv("API_HASH", "db0b17b9e5226108f10c2f132e7eed0d")
 BOT_TOKEN = getenv("BOT_TOKEN", "7072331602:AAEHEMPCEsYeI16JkbH7A4Cue8PhzmiatRM")
 BOT_USERNAME = getenv("BOT_USERNAME" , "CutieXmusicBot")
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://Bikash:Bikash@bikash.yl2nhcy.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://ITZMESHALU82:SHALINI94@cluster0.ggwivyg.mongodb.net/?retryWrites=true&w=majority")
 
 # Custom max audio(music) duration for voice chat. set DURATION_LIMIT in variables with your own time(mins), Default to 60 mins.
 DURATION_LIMIT_MIN = int(
