@@ -13,7 +13,7 @@ from CUTEXMUSIC.utils.database.couplesdb import _get_image, get_couple
 button = [
        [
             InlineKeyboardButton(
-                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CutieXmusicBot?startgroup=true",
+                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CuteXMusicBot?startgroup=true",
             )
         ]
 ]
