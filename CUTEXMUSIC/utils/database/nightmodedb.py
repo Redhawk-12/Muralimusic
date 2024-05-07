@@ -1,9 +1,9 @@
 from typing import Dict, List, Union
-from config import CUTE_BACHHA_DB
+from config import MURALI_DB
 from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
 
 
-mongo = MongoCli(CUTE_BACHHA_DB).Rankings
+mongo = MongoCli(MURALI_DB).Rankings
 
 nightdb = mongo.nightmode
 
