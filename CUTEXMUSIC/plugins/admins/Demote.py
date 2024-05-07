@@ -40,7 +40,7 @@ async def get_userid_from_username(username):
 
 
 async def demote_user(user_id, first_name, admin_id, admin_name, chat_id, message, time=None):
-    if user_id == 6761639198:
+    if user_id == 6844821478:
         msg_text = "why should i demote myself? sorry but I'm not stupid like you"
         return msg_text, False
     try:
