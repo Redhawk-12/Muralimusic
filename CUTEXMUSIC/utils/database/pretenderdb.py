@@ -3,7 +3,7 @@ from config import *
 from motor.motor_asyncio import AsyncIOMotorClient as CUTEEMUSIC
 from CUTEXMUSIC import app
 
-mongo = CUTEEMUSIC(CUTE_BACHHA_DB).Rankings
+mongo = CUTEEMUSIC(MURALI_DB).Rankings
 
 impdb = mongo.pretender
 
