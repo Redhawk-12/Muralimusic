@@ -117,7 +117,7 @@ async def animev2callback(client, callback_query: CallbackQuery):
                 caption=f"ʟᴀsᴛ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ: {callback_query.from_user.mention}", reply_markup=InlineKeyboardMarkup(button),
        )
     except FloodWait as e:
-        await update.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
+        await callback_query.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
     except Exception as e:
         await app.send_messsage(LOG_GROUP_ID, f"An error occurred while editing the message in anime v2: {e}")
   
@@ -149,7 +149,7 @@ async def animeboyspfp(client, callback_query: CallbackQuery):
                 caption=f"ʟᴀsᴛ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ: {callback_query.from_user.mention}", reply_markup=InlineKeyboardMarkup(button),
        )
     except FloodWait as e:
-        await update.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
+        await callback_query.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
     except Exception as e:
         await app.send_messsage(LOG_GROUP_ID, f"An error occurred while editing the message in anime boys: {e}")
   
@@ -182,7 +182,7 @@ async def animev2callback(client, callback_query: CallbackQuery):
                 caption=f"ʟᴀsᴛ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ: {callback_query.from_user.mention}", reply_markup=InlineKeyboardMarkup(button),
         )
     except FloodWait as e:
-        await update.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
+        await callback_query.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
     except Exception as e:
         await app.send_messsage(LOG_GROUP_ID, f"An error occurred while editing the message in anime kitsune: {e}")
   
@@ -214,7 +214,7 @@ async def animev2callback(client, callback_query: CallbackQuery):
                 caption=f"ʟᴀsᴛ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ: {callback_query.from_user.mention}", reply_markup=InlineKeyboardMarkup(button),
         )
     except FloodWait as e:
-        await update.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
+        await callback_query.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
     except Exception as e:
         await app.send_messsage(LOG_GROUP_ID, f"An error occurred while editing the message in anime waifu : {e}")
   
@@ -245,7 +245,7 @@ async def foxgirlcallback(client, callback_query: CallbackQuery):
                 caption=f"ʟᴀsᴛ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ: {callback_query.from_user.mention}", reply_markup=InlineKeyboardMarkup(button),
         )
     except FloodWait as e:
-        await update.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
+        await callback_query.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
     except Exception as e:
         await app.send_messsage(LOG_GROUP_ID, f"An error occurred while editing the message in anime fox girlz: {e}")
   
@@ -276,7 +276,7 @@ async def foxgirlcallback(client, callback_query: CallbackQuery):
         )
        
     except FloodWait as e:
-        await update.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
+        await callback_query.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
     except Exception as e:
         await app.send_messsage(LOG_GROUP_ID, f"An error occurred while editing the message in anime v3: {e}")
   
@@ -309,7 +309,7 @@ async def foxgirlcallback(client, callback_query: CallbackQuery):
                 caption=f"ʟᴀsᴛ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ: {callback_query.from_user.mention}", reply_markup=InlineKeyboardMarkup(button),
         )
     except FloodWait as e:
-        await update.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
+        await callback_query.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
     except Exception as e:
         await app.send_messsage(LOG_GROUP_ID, f"An error occurred while editing the message in anime v4: {e}")
   
@@ -341,7 +341,7 @@ async def foxgirlcallback(client, callback_query: CallbackQuery):
                 caption=f"ʟᴀsᴛ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ: {callback_query.from_user.mention}", reply_markup=InlineKeyboardMarkup(button),
         )
     except FloodWait as e:
-        await update.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
+        await callback_query.message.reply(f"<u>ᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ʙʟᴏᴄᴋᴇᴅ ʙʏ ʙᴏᴛ</u>\n\n<u>ʀᴇᴀꜱᴏɴ :</u> ᴜꜱɪɴɢ ᴍᴇ ᴠᴇʀʏ ꜰᴀꜱᴛ \nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 20 ꜱᴇᴄᴏɴᴅꜱ ")
     except Exception as e:
         await app.send_messsage(LOG_GROUP_ID, f"An error occurred while editing the message in cats img: {e}")
   
