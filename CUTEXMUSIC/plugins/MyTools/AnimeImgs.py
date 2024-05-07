@@ -60,7 +60,7 @@ async def animev1callback(client: app, update: Union[types.Message, types.Callba
     try:
         up = response['url']
         but = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="animev1"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
@@ -100,7 +100,7 @@ async def animev2callback(client, callback_query: CallbackQuery):
         OWNER = f"tg://openmessage?user_id=6844821478"
     try:
         button = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="animev2"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
@@ -132,7 +132,7 @@ async def animeboyspfp(client, callback_query: CallbackQuery):
         OWNER = f"tg://openmessage?user_id=6844821478"
     try:
         button = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="animeboyspfp"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
@@ -165,7 +165,7 @@ async def animev2callback(client, callback_query: CallbackQuery):
         OWNER = f"tg://openmessage?user_id=6844821478"
     try:
         button = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="kitsunepfp"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
@@ -197,7 +197,7 @@ async def animev2callback(client, callback_query: CallbackQuery):
         OWNER = f"tg://openmessage?user_id=6844821478"
     try:
         button = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url=f"https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="waifupfp"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
@@ -228,7 +228,7 @@ async def foxgirlcallback(client, callback_query: CallbackQuery):
         OWNER = f"tg://openmessage?user_id=6844821478"
     try:
         button = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url="https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url="https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="foxgirlz"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
@@ -258,7 +258,7 @@ async def foxgirlcallback(client, callback_query: CallbackQuery):
         OWNER = f"tg://openmessage?user_id=6844821478"
     try:
         button = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url="https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url="https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="nekov3"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
@@ -293,7 +293,7 @@ async def foxgirlcallback(client, callback_query: CallbackQuery):
         OWNER = f"tg://openmessage?user_id=6844821478"
     try:
         button = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url="https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url="https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="nekov3"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
@@ -325,7 +325,7 @@ async def foxgirlcallback(client, callback_query: CallbackQuery):
         OWNER = f"tg://openmessage?user_id=6844821478"
     try:
         button = [
-            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url="https://t.me/CutieXmusicBot?startgroup=true")],
+            [InlineKeyboardButton("ᴋɪᴅɴᴀᴘ Mᴇ ✨", url="https://t.me/CuteXMusicBot?startgroup=true")],
             [
                 InlineKeyboardButton("ɢᴇɴᴇʀᴀᴛᴇ ᴀɢᴀɪɴ 🕊️", callback_data="catsimg"),
                 InlineKeyboardButton("ᴏᴡɴᴇʀ 💕", user_id=OWNER),
