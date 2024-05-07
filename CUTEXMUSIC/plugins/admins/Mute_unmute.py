@@ -53,7 +53,7 @@ db = mongo_client["muted_users"]
 muted_users_collection = db["muted_users"]
 
 async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, message, time=None):
-    if user_id == 6761639198:
+    if user_id == 6844821478:
             msg_text = "Why should I mute myself? Sorry, but I'm not stupid like you"
             return msg_text, False
     muted_user = await muted_users_collection.find_one({"user_id": user_id, "chat_id": chat_id})
@@ -148,7 +148,7 @@ async def unmute_user(user_id, first_name, admin_id, admin_name, chat_id, messag
         [
             InlineKeyboardButton(
                 text="• Sᴜᴍᴍᴏɴ ᴍᴇ •",
-                url=f"https://t.me/CutieXmusicBot?startgroup=new",
+                url=f"https://t.me/CuteXMusicBot?startgroup=new",
             ),
             InlineKeyboardButton(
                 text="• ᴅᴇʟᴇᴛᴇ •",
