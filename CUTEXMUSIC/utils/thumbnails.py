@@ -128,7 +128,7 @@ async def gen_thumb(videoid, user_id, theme):
                     font=font,
                 ),
                 draw.text(
-                    (570, 290),
+                    (570, 300),
                     f"Views: {views} ",
                     fill="white",
                     stroke_width=1,
@@ -169,7 +169,7 @@ async def gen_thumb(videoid, user_id, theme):
                     font=font,
                 ),
                 draw.text(
-                    (570, 290),
+                    (570, 300),
                     f"Views: {views} ",
                     fill="white",
                     stroke_width=1,
@@ -304,7 +304,7 @@ async def gen_qthumb(videoid, user_id, theme):
                     font=font,
                 ),
                 draw.text(
-                    (570, 290),
+                    (570, 300),
                     f"Views: {views} ",
                     fill="white",
                     stroke_width=1,
@@ -345,7 +345,7 @@ async def gen_qthumb(videoid, user_id, theme):
                     font=font,
                 ),
                 draw.text(
-                    (570, 290),
+                    (570, 300),
                     f"Views: {views} ",
                     fill="white",
                     stroke_width=1,
