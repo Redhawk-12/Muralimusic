@@ -6,6 +6,7 @@ from CUTEXMUSIC.misc import SUDOERS
 from CUTEXMUSIC.utils.database import get_client
 import asyncio
 from pyrogram.errors import FloodWait
+import nekos
 from config import OWNER_ID, SUPPORT_GROUP
 from CUTEXMUSIC.core.userbot import assistants
 
@@ -81,4 +82,39 @@ async def delall_pfp(client: Client, message: Message):
                 await message.reply_text("No profile photos found.")
         except Exception as e:
             await message.reply_text(f"{e}")
+
+
+
+
+
+
+profile_picture_update_enabled = False
+
+
+async def update_profile_picture(client):
+    global profile_picture_update_enabled
+    while profile_picture_update_enabled:
+        try:
+            image_url = nekos.img("neko")
+            photo_path = await client.download_media(image_url)
+            await client.set_profile_photo(photo=photo_path)
+            
+            os.remove(photo_path)
+            
+            await asyncio.sleep(1200)
+        except Exception as e:
+            print(f"Error updating profile picture: {e}")
+            await asyncio.sleep(60)
+
+
+@app.on_message(filters.command("pfps") & SUDOERS)
+async def pfp_toggle_on(client: Client, message: Message):
+    global profile_picture_update_enabled
+    if message.command[1] == "on":
+        profile_picture_update_enabled = True
+        await message.reply_text("Profile picture updating is now enabled.")
+        asyncio.create_task(update_profile_picture(client))
+    elif message.command[1] == "off":
+        profile_picture_update_enabled = False
+        await message.reply_text("Profile picture updating is now disabled.")
 
