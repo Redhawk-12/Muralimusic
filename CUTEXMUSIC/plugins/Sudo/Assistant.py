@@ -107,9 +107,12 @@ async def update_profile_picture(client):
             await asyncio.sleep(60)
 
 
+
 @app.on_message(filters.command("pfps") & SUDOERS)
 async def pfp_toggle_on(client: Client, message: Message):
     global profile_picture_update_enabled
+    if len(message.command) < 2:
+        return await message.reply_text("Please provide 'on' or 'off' as arguments.")
     if message.command[1] == "on":
         profile_picture_update_enabled = True
         await message.reply_text("Profile picture updating is now enabled.")
@@ -117,4 +120,4 @@ async def pfp_toggle_on(client: Client, message: Message):
     elif message.command[1] == "off":
         profile_picture_update_enabled = False
         await message.reply_text("Profile picture updating is now disabled.")
-
+        
