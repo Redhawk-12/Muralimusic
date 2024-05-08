@@ -127,6 +127,9 @@ CUTE_PICS = [
 "https://telegra.ph/file/9dbab97d92fefb83ffb83.jpg",
 "https://telegra.ph/file/574377193d0ac413757a4.jpg",
 "https://telegra.ph/file/704ef3c97af1163689206.jpg",
+"https://telegra.ph/file/18bb7adf017c4566f17bf.jpg",
+"https://telegra.ph/file/eeb95340c7f1b6548f4e2.jpg",
+"https://telegra.ph/file/b6c7cee4bb3767c59ab54.jpg",
 "https://telegra.ph/file/e8d502afc144e77d81c48.jpg",
 ]
 
