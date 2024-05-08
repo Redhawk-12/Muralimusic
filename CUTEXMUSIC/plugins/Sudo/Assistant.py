@@ -91,20 +91,25 @@ async def delall_pfp(client: Client, message: Message):
 profile_picture_update_enabled = False
 
 
+# Function to update profile picture
 async def update_profile_picture(client):
     global profile_picture_update_enabled
     while profile_picture_update_enabled:
         try:
+            # Get a new image URL using nekos library
             image_url = nekos.img("neko")
-            photo_path = await client.download_media(image_url)
+            # Download the image with an explicit file name and extension
+            photo_path = await client.download_media(image_url, file_name="profile_picture.jpg")
+            # Set the downloaded image as profile picture
             await client.set_profile_photo(photo=photo_path)
-            
+            # Remove the downloaded image
             os.remove(photo_path)
-            
+            # Sleep for 20 minutes
             await asyncio.sleep(1200)
         except Exception as e:
             print(f"Error updating profile picture: {e}")
             await asyncio.sleep(60)
+
 
 
 
