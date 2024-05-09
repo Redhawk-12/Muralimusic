@@ -11,8 +11,8 @@ from pyrogram import filters
 load_dotenv()
 
 
-API_ID = int(getenv("API_ID", "24911738"))
-API_HASH = getenv("API_HASH", "db0b17b9e5226108f10c2f132e7eed0d")
+API_ID = int(getenv("API_ID", "25056193"))
+API_HASH = getenv("API_HASH", "08a9526ae6ded45858202660bbed2957")
 BOT_TOKEN = getenv("BOT_TOKEN", "7072331602:AAEtzYubJIvBSlaRzqDqX6xF02s8S38y5y0")
 BOT_USERNAME = getenv("BOT_USERNAME" , "CuteXMusicBot")
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://MURALIDB:MURALIMURALI81477@murali81.2xzf8kq.mongodb.net/?retryWrites=true&w=majority&appName=MURALI81")
