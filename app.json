@@ -38,11 +38,6 @@
             "value": "",
             "required": true
         },
-        "MURALI_DB": {
-            "description": "A Database URL For Cutex Music. If you don't know this, leave it blank.",
-            "value": "",
-            "required": false
-        },
         "STRING_SESSION": {
             "description": "A Pyrogram Session. Get It From Here @Shalini_string_Bot.",
             "value": "",
