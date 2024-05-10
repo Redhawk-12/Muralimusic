@@ -433,8 +433,7 @@ HELP_55 = """**<u>тιиу</u>**
 
 HELP_56 = """**<u>ᴡʜɪꜱᴘᴇʀ </u>**
 
-i dont know how to use this
-
+Type @CuteXMusicBot  And Give Space In your Keyboard 
 
 """
 
