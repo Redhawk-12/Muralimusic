@@ -98,6 +98,9 @@ async def get_served_chats() -> list:
         chats_list.append(chat)
     return chats_list
 
+async def delete_served_chat(chat_id: int):
+    await chatsdb.delete_one({"chat_id": chat_id})
+
 
 async def is_served_chat(chat_id: int) -> bool:
     chat = await chatsdb.find_one({"chat_id": chat_id})
