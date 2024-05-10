@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from CUTEXMUSIC import app
-from CUTEXMUSIC.utils.database import get_served_chats
+from CUTEXMUSIC.utils.database import get_served_chats, delete_served_chat
 from config import LOG_GROUP_ID
 import requests
 from CUTEXMUSIC.utils.database import get_assistant
