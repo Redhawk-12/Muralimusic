@@ -108,8 +108,8 @@ PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", "50000006"))
 
 # Cleanmode time after which bot will delete its old messages from chats
 CLEANMODE_DELETE_MINS = int(
-    getenv("CLEANMODE_MINS", "500000000")
-)  # Remember to give value in Seconds
+    getenv("CLEANMODE_MINS", "24")
+)  # Remember to give value in mins
 
 
 # Telegram audio  and video file size limit
