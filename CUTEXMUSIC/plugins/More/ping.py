@@ -2,6 +2,7 @@ from datetime import datetime
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto
 import asyncio
+import requests 
 import nekos
 from config import BANNED_USERS, MUSIC_BOT_NAME, PING_IMG_URL
 from strings import get_command
@@ -35,10 +36,12 @@ async def ping_com(client, message, _):
     await asyncio.sleep(0.3)
     await em.delete()
     response = await message.reply_photo(
-        photo=PING_IMG_URL,
+        photo=nekos.img("neko"),
         caption=_["ping_1"],
     )
     start = datetime.now()
+    response = requests.get("https://nekos.best/api/v2/neko").json()
+    image_url = response["results"][0]["url"]
     pytgping = await CUTE.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
@@ -46,7 +49,7 @@ async def ping_com(client, message, _):
 
     
     await response.edit_media(
-        media=InputMediaPhoto(nekos.img("neko")),
+        media=InputMediaPhoto(image_url),
         reply_markup=InlineKeyboardMarkup(button)
     )
     await response.edit_caption(
