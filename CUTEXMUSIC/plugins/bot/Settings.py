@@ -177,8 +177,10 @@ async def gib_repository_callback(_, callback_query):
 @languageCB
 async def repoback_back_mcarkup(client, CallbackQuery: CallbackQuery, _):
     buttons = threehelp_pannel(_, True)
+    response = requests.get("https://nekos.best/api/v2/neko").json()
+    image_url = response["results"][0]["url"]
     await CallbackQuery.edit_message_media(
-        InputMediaPhoto(media=nekos.img("neko"), caption=_["help_1"].format(SUPPORT_CHAT))
+        InputMediaPhoto(media=image_url, caption=_["help_1"].format(SUPPORT_CHAT))
     )
     await CallbackQuery.edit_message_reply_markup(reply_markup=buttons)
 
@@ -195,7 +197,7 @@ async def repoback_back_markup(client, CallbackQuery: CallbackQuery, _):
         
     out = private_panel(_, BOT_USERNAME, OWNER)
     await CallbackQuery.edit_message_media(
-        InputMediaPhoto(media=nekos.img("neko"), caption=_["start_2"].format(CallbackQuery.from_user.mention, app.mention))
+        InputMediaPhoto(media=image_url, caption=_["start_2"].format(CallbackQuery.from_user.mention, app.mention))
     )
     
     # Edit the message reply markup
