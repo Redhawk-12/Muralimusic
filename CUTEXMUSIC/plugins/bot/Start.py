@@ -282,6 +282,8 @@ async def start_comm(client, message: Message, _):
             OWNER = f"tg://openmessage?user_id=6844821478"
 
         out = private_panel(_, BOT_USERNAME, OWNER)
+        response = requests.get("https://nekos.best/api/v2/neko").json()
+        image_url = response["results"][0]["url"]
         startmsg = await message.reply_text(
             text=random.choice(EMOJIOS),
         )
@@ -312,7 +314,7 @@ async def start_comm(client, message: Message, _):
         await asyncio.sleep(0.02)
         await Hlo.delete()
         await message.reply_photo(
-                    photo=random.choice(CUTE_PICS),
+                    photo=image_url,
                     caption=_["start_2"].format(message.from_user.mention, app.mention),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
