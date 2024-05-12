@@ -7,6 +7,7 @@ from os import getenv
 import time
 from dotenv import load_dotenv
 from pyrogram import filters
+import requests 
 
 load_dotenv()
 
