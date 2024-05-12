@@ -150,31 +150,35 @@ autoclean = []
 MURALI_DB = getenv("MURALI_DB", "mongodb+srv://CUTEDATABASE0018:CUTEDATABASS92@cutedatabase.pyuohtj.mongodb.net/?retryWrites=true&w=majority&appName=CuteDataBase")
 
 # Images
-START_IMG_URL = nekos.img("neko")
 
-PING_IMG_URL = nekos.img("neko")
+response = requests.get("https://nekos.best/api/v2/neko").json()
+image_url = response["results"][0]["url"]
 
-PLAYLIST_IMG_URL = nekos.img("neko")
+START_IMG_URL = image_url
 
-GLOBAL_IMG_URL = nekos.img("neko")
+PING_IMG_URL = image_url
 
-STATS_IMG_URL = nekos.img("neko")
+PLAYLIST_IMG_URL = image_url
 
-TELEGRAM_AUDIO_URL = nekos.img("neko")
+GLOBAL_IMG_URL = image_url
 
-TELEGRAM_VIDEO_URL = nekos.img("neko")
+STATS_IMG_URL = image_url
 
-STREAM_IMG_URL = nekos.img("neko")
+TELEGRAM_AUDIO_URL = image_url
 
-SOUNCLOUD_IMG_URL = nekos.img("neko")
+TELEGRAM_VIDEO_URL = image_url
 
-YOUTUBE_IMG_URL = nekos.img("neko")
+STREAM_IMG_URL = image_url
 
-SPOTIFY_ARTIST_IMG_URL = nekos.img("neko")
+SOUNCLOUD_IMG_URL = image_url
 
-SPOTIFY_ALBUM_IMG_URL = nekos.img("neko")
+YOUTUBE_IMG_URL = image_url
 
-SPOTIFY_PLAYLIST_IMG_URL = nekos.img("neko")
+SPOTIFY_ARTIST_IMG_URL = image_url
+
+SPOTIFY_ALBUM_IMG_URL = image_url
+
+SPOTIFY_PLAYLIST_IMG_URL = image_url
 
 def time_to_seconds(time):
     stringt = str(time)
