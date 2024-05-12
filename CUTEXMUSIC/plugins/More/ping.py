@@ -1,5 +1,5 @@
 from datetime import datetime
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto
 import asyncio
 import requests 
@@ -35,23 +35,26 @@ async def ping_com(client, message, _):
     st = await message.reply_sticker("CAACAgUAAx0CfRCYvwACGKhl9wpHYaXxQD8OSnKUx6gh9UgAAX4AAkAIAAKbeohV85_1ROdrq0AeBA")
     await asyncio.sleep(0.3)
     await em.delete()
-    response = await message.reply_photo(
-        photo=nekos.img("neko"),
+
+    
+    api_response = requests.get("https://nekos.best/api/v2/neko").json()
+    image_url = api_response["results"][0]["url"]
+    response_message = await message.reply_photo(
+        photo=image_url,
         caption=_["ping_1"],
     )
     start = datetime.now()
-    response = requests.get("https://nekos.best/api/v2/neko").json()
-    image_url = response["results"][0]["url"]
+    
     pytgping = await CUTE.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
     await st.delete()
 
-    
-    await response.edit_media(
+    await response_message.edit_media(
         media=InputMediaPhoto(image_url),
         reply_markup=InlineKeyboardMarkup(button)
     )
-    await response.edit_caption(
+    await response_message.edit_caption(
         caption=_["ping_2"].format(resp, MUSIC_BOT_NAME, UP, RAM, CPU, DISK, pytgping)
     )
+
