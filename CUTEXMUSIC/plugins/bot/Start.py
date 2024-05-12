@@ -1,5 +1,6 @@
 import asyncio
 import random
+import requests 
 from pyrogram import filters
 from pyrogram import enums, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
