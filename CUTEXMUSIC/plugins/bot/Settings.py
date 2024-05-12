@@ -196,6 +196,8 @@ async def repoback_back_markup(client, CallbackQuery: CallbackQuery, _):
             
         
     out = private_panel(_, BOT_USERNAME, OWNER)
+    response = requests.get("https://nekos.best/api/v2/neko").json()
+    image_url = response["results"][0]["url"]
     await CallbackQuery.edit_message_media(
         InputMediaPhoto(media=image_url, caption=_["start_2"].format(CallbackQuery.from_user.mention, app.mention))
     )
