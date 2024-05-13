@@ -1,6 +1,6 @@
 import asyncio
 from threading import RLock
-from pymongo import MongoClient
+from motor.motor_asyncio import AsyncIOMotorClient
 from config import MURALI_DB
 from CUTEXMUSIC.utils.msg_types import Types
 
@@ -11,8 +11,8 @@ class Floods:
     db_name = "flood"
 
     def __init__(self):
-        self.client = MongoClient(MURALI_DB)
-        self.db = self.client[self.db_name][self.db_name]
+        self.client = AsyncIOMotorClient(MURALI_DB)
+        self.db = self.client[self.db_name][self.db_name]  # Modified this line
 
     async def save_flood(
         self,
@@ -22,10 +22,10 @@ class Floods:
         action: str,
     ):
         with INSERTION_LOCK:
-            curr = self.db.find_one({"chat_id": chat_id})
+            curr = await self.db.find_one({"chat_id": chat_id})
             if curr:
                 if not (limit == int(curr['limit']) and within == int(curr['within']) and action == str(curr['action'])):
-                    return self.db.update_one(
+                    return await self.db.update_one(
                         {"chat_id": chat_id},
                         {"$set": {
                             "limit": limit,
@@ -36,7 +36,7 @@ class Floods:
                 else:
                     return
             else:
-                return self.db.insert_one(
+                return await self.db.insert_one(
                     {
                         "chat_id": chat_id,
                         "limit": limit,
@@ -47,7 +47,7 @@ class Floods:
 
     async def is_chat(self, chat_id: int):
         with INSERTION_LOCK:
-            curr = self.db.find_one({"chat_id": chat_id})
+            curr = await self.db.find_one({"chat_id": chat_id})
             if curr:
                 action = [str(curr['limit']), str(curr['within']), str(curr['action'])]
                 return action
@@ -55,16 +55,16 @@ class Floods:
 
     async def get_action(self, chat_id: int):
         with INSERTION_LOCK:
-            curr = self.db.find_one({"chat_id": chat_id})
+            curr = await self.db.find_one({"chat_id": chat_id})
             if curr:
                 return curr['action']
             return "Flood haven't set"
 
     async def rm_flood(self, chat_id: int):
         with INSERTION_LOCK:
-            curr = self.db.find_one({"chat_id": chat_id})
+            curr = await self.db.find_one({"chat_id": chat_id})
             if curr:
-                self.db.delete_one({"chat_id": chat_id})
+                await self.db.delete_one({"chat_id": chat_id})
                 return True
             return False
 
