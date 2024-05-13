@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
+from pymongo import MongoClient
 import re
 from CUTEXMUSIC import app
 
