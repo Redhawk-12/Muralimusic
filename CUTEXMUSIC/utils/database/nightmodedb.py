@@ -5,7 +5,7 @@ from pymongo import MongoClient
 
 mongo = MongoClient(MURALI_DB)['CUTEMUSICXYZ']
 
-impdb = mongo['nightmodedbb']
+nightdb = mongo['nightmodedbb']
 
 
 async def nightmode_on(chat_id : int) :
