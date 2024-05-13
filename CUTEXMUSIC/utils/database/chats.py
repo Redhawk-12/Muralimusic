@@ -1,5 +1,5 @@
 from typing import Dict, List, Union
-from CUTEXMUSIC.core.mongo import db
+from CUTEXMUSIC.core.mongo import mongodb as db
 
 chatsdb = db.chats
 
