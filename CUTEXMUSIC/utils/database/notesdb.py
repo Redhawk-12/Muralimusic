@@ -1,7 +1,7 @@
-from CUTEXMUSIC.core.mongo import db
+from CUTEXMUSIC.core.mongo import notesdb as notes
 from CUTEXMUSIC import app 
 
-notes = db.notes
+
 
 async def SaveNote(chat_id, note_name, content, text, data_type):
     GetNotes = await notes.find_one(
