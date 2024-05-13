@@ -1,5 +1,4 @@
-from motor.motor_asyncio import AsyncIOMotorClient as _mongo_client_
-from pymongo import MongoClient
+from motor.motor_asyncio import AsyncIOMotorClient
 from pyrogram import Client
 from typing import Dict, Union
 import config
@@ -21,13 +20,13 @@ if config.MONGO_DB_URI is None:
     info = temp_client.get_me()
     username = info.username
     temp_client.stop()
-    _mongo_async_ = _mongo_client_(TEMP_MONGODB)
-    _mongo_sync_ = MongoClient(TEMP_MONGODB)
+    _mongo_async_ = AsyncIOMotorClient(TEMP_MONGODB)
+    _mongo_sync_ = AsyncIOMotorClient(TEMP_MONGODB)
     mongodb = _mongo_async_[username]
     pymongodb = _mongo_sync_[username]
 else:
-    _mongo_async_ = _mongo_client_(config.MONGO_DB_URI)
-    _mongo_sync_ = MongoClient(config.MONGO_DB_URI)
+    _mongo_async_ = AsyncIOMotorClient(config.MONGO_DB_URI)
+    _mongo_sync_ = AsyncIOMotorClient(config.MONGO_DB_URI)
     mongodb = _mongo_async_.CUTEXMUSIC
     pymongodb = _mongo_sync_.CUTEXMUSIC
 
@@ -35,7 +34,7 @@ else:
 
 
 
-mongo = _mongo_client_(MURALI_DB)
+mongo = AsyncIOMotorClient(MURALI_DB)
 db = mongo.MURALIBOTDATABSE
 coupledb = db.couple
 afkdb = db.afk
