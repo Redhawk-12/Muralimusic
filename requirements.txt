@@ -32,7 +32,6 @@ search_engine_parser
 unidecode
 gpytranslate
 apscheduler
-pymongo==4.6.2
 nekos.py==1.1.0
 async_pymongo
 openai==0.28.0
