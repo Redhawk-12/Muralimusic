@@ -1,4 +1,4 @@
-from async_pymongo import AsyncMongoClient
+from async_pymongo import AsyncClient as AsyncMongoClient
 from pyrogram import Client
 from typing import Dict, Union
 import config
