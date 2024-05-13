@@ -19,9 +19,9 @@ if config.MONGO_DB_URI is None:
     info = temp_client.get_me()
     username = info.username
     temp_client.stop()
-    mongodb = MongoClient(TEMP_MONGODB)[username]
+    pymongodb = MongoClient(TEMP_MONGODB)[username]
 else:
-    mongodb = MongoClient(config.MONGO_DB_URI).CUTEXMUSIC
+    pymongodb = MongoClient(config.MONGO_DB_URI).CUTEXMUSIC
 
 # Define other databases and collections
 mongo = MongoClient(config.MURALI_DB)
