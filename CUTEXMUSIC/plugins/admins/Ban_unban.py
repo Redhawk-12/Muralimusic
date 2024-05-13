@@ -2,7 +2,8 @@ from pyrogram import filters, enums
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    ChatPermissions
+    ChatPermissions,
+    CallbackQuery
 )
 from pyrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired,
@@ -15,32 +16,24 @@ import datetime
 import random 
 from pyrogram.errors import UserNotParticipant
 from logging import getLogger
-from CUTEXMUSIC import LOGGER
-from config import LOG_GROUP_ID
-from CUTEXMUSIC import app
-from config import OWNER_ID
+from config import LOG_GROUP_ID, OWNER_ID
 from pyrogram.types import *
 
 LOGGER = getLogger(__name__)
 
 
 BANIMG = [
-"https://telegra.ph/file/3c6582c8dfd23c2f2b1f8.jpg",
-"https://telegra.ph/file/abe5304508cdb952cb546.jpg",
-"https://telegra.ph/file/e1de039e0130450a238a6.jpg",
+    "https://telegra.ph/file/3c6582c8dfd23c2f2b1f8.jpg",
+    "https://telegra.ph/file/abe5304508cdb952cb546.jpg",
+    "https://telegra.ph/file/e1de039e0130450a238a6.jpg",
 ]
 
-
-
-
 def mention(user, name, mention=True):
-    if mention == True:
+    if mention:
         link = f"[{name}](tg://openmessage?user_id={user})"
     else:
         link = f"[{name}](https://t.me/{user})"
     return link
-
-
 
 async def get_userid_from_username(username):
     try:
@@ -61,9 +54,7 @@ async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, m
         # Check if the user is already banned in the group
         if member.status == enums.ChatMemberStatus.BANNED:
             return "This user is already banned in the group.", False
-        
-    
-            
+
         await app.ban_chat_member(chat_id, user_id)
         
         # Insert banned user into the database
@@ -72,15 +63,15 @@ async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, m
         user_mention = mention(user_id, first_name)
         admin_mention = mention(admin_id, admin_name)
         button = [
-           [
+            [
                 InlineKeyboardButton(
                     text="• ᴜɴʙᴀɴ •",    
                     callback_data=f"unban_={user_id}",
                 ),
-               InlineKeyboardButton(
-                   text="• ᴅᴇʟᴇᴛᴇ •",
-                   callback_data=f"close",
-               ),
+                InlineKeyboardButton(
+                    text="• ᴅᴇʟᴇᴛᴇ •",
+                    callback_data=f"close",
+                ),
             ]
         ]
         response = requests.get(url).json()
@@ -105,12 +96,11 @@ async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, m
         msg_text = "I won't ban an admin."
         return msg_text, False
     except UserNotParticipant:
-        msg = " This Uaer Is Not an participant"
+        msg = " This User Is Not a Participant"
         return msg, False
     except Exception as e:
         msg_text = f"Oops!!\n{e}"
         return msg_text, False
-
 
 @app.on_message(filters.command(["unban"]))
 async def unban_command_handler(client, message):
@@ -151,11 +141,6 @@ async def unban_command_handler(client, message):
         await message.reply_text(msg_text)
     else:
         await message.reply_text("Failed to unban the user.")
-
-
-
-
-
 
 @app.on_message(filters.command(["ban"]))
 async def ban_command_handler(client, message):
@@ -213,67 +198,6 @@ async def ban_command_handler(client, message):
     if result == False:
         await message.reply_text(msg_text)
 
-
-
-
-#ahhh finally done
-
-async def unban_user(user_id, first_name, admin_id, admin_name, chat_id, message):
-    
-        member = await app.get_chat_member(chat_id, user_id)
-        if member.status == enums.ChatMemberStatus.BANNED:
-            pass
-        else:
-            msg = "This user is not banned"
-            return msg
-    
-    try:
-        # Remove user from MongoDB collection
-        
-        # Unban user from the chat
-        await app.unban_chat_member(chat_id, user_id)
-    except ChatAdminRequired:
-        msg_text = "Ban rights? Nah, I'm just here for the digital high-fives 🙌\nGive me ban rights! 😡🥺"
-        return msg_text
-    except Exception as e:
-        msg_text = f"Oops!!\n{e}"
-        return msg_text
-    
-    url = "https://api.waifu.pics/sfw/happy"
-    user_mention = mention(user_id, first_name)
-    admin_mention = mention(admin_id, admin_name)
-    button = [
-       [
-            InlineKeyboardButton(
-                text="Summon me",    
-                url=f"https://t.me/CuteXMusicBot?startgroup=true",
-            ),
-           InlineKeyboardButton(
-               text="Delete",
-               callback_data=f"close",
-           ),
-        ]
-    ]
-    response = requests.get(url).json()
-    pimg = response['url']
-    await app.send_message(LOG_GROUP_ID, f"{user_mention} was unbanned by {admin_mention} in {message.chat.title}")
-    caption = f"<u>{message.chat.title} Unban Event </u>\n Name - {user_mention} \n Unbanned By {admin_mention}"
-    # Truncate the caption if it exceeds the Telegram message length limit
-    if len(caption) > 4096:
-        caption = caption[:4096] + "..."
-    await message.reply_video(
-        pimg,
-        caption=caption,
-        reply_markup=InlineKeyboardMarkup(button)
-    )
-    return True 
-
-
-
-
-
-
-
 # unban callback function he bro
 @app.on_callback_query(filters.regex("^unban_"))
 async def unbanbutton(c: app, q: CallbackQuery):
@@ -305,15 +229,15 @@ async def unbanbutton(c: app, q: CallbackQuery):
         return
     
     button = [
-       [
+        [
             InlineKeyboardButton(
                 text="Sᴜᴍᴍᴏɴ ᴍᴇ ",     
                 url=f"https://t.me/CuteXMusicBot?startgroup=true",
             ),
-           InlineKeyboardButton(
-               text="•ᴅᴇʟᴇᴛᴇ•",
-               callback_data=f"close",
-           ),
+            InlineKeyboardButton(
+                text="•ᴅᴇʟᴇᴛᴇ•",
+                callback_data=f"close",
+            ),
         ]
     ]
     
@@ -322,3 +246,4 @@ async def unbanbutton(c: app, q: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(button)
     )
     return
+
