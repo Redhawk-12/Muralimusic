@@ -21,10 +21,10 @@ if config.MONGO_DB_URI is None:
     temp_client.stop()
     pymongodb = MongoClient(TEMP_MONGODB).CUTEXMUSIC
 else:
-    pymongodb = MongoClient(config.MONGO_DB_URI).CUTEXMUSIC
+    pymongodb = MongoClient(config.MONGO_DB_URI, serverSelectionTimeoutMS=5000).CUTEXMUSIC
 
 # Define other databases and collections
-mongo = MongoClient(config.MURALI_DB)
+mongo = MongoClient(config.MURALI_DB, serverSelectionTimeoutMS=5000)
 db = mongo.MURALIBOTDATABASE
 coupledb = db.couple
 afkdb = db.afk
