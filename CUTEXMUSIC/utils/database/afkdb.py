@@ -1,6 +1,5 @@
-from CUTEXMUSIC.core.mongo import db
+from CUTEXMUSIC.core.mongo import afkdb
 
-afkdb = db.afk
 
 
 async def is_afk(user_id: int) -> bool:
