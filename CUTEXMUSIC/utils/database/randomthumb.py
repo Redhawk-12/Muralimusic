@@ -1,7 +1,7 @@
 from typing import Dict, List, Union
 from CUTEXMUSIC.core.mongo import pymongodb as mongodb
 
-themedb = mongodb.notes
+themedb = mongodb.notesss
 
 
 async def _get_theme(chat_id: int) -> Dict[str, int]:
