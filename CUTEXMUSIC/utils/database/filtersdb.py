@@ -1,6 +1,5 @@
-from CUTEXMUSIC.core.mongo import db
+from CUTEXMUSIC.core.mongo import filtersdb
 
-filters = db.filters
 
 
 
