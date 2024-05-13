@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from CUTEXMUSIC import app
-from CUTEXMUSIC.utils.database import get_served_chats, delete_served_chat
+from CUTEXMUSIC.utils.database import get_served_chats, delete_served_chat, add_served_chat
 from config import LOG_GROUP_ID
 import requests
 from CUTEXMUSIC.utils.database import get_assistant
@@ -40,6 +40,7 @@ async def on_new_chat_members(client: Client, message: Message):
             [InlineKeyboardButton("sᴇᴇ ʙᴏᴛ ᴀᴅᴅᴇᴅ ɢʀᴏᴜᴘ", url=chatusername)]
         ]))
         await userbot.join_chat(f"@{chatusername}")
+        await add_served_chat(chat_id)
 
 @app.on_message(filters.left_chat_member)
 async def on_left_chat_member(_, message: Message):
