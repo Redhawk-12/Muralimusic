@@ -1,6 +1,9 @@
 from CUTEXMUSIC.core.mongo import db
 
-filters = db.filters["filters"] 
+filters = db.filters
+
+
+
 
 async def add_filter_db(chat_id: int, filter_name: str, content: str, text: str, data_type: int):
    filter_data = await filters.find_one(
