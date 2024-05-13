@@ -1,6 +1,6 @@
 from typing import Dict, List, Union
 
-from CUTEXMUSIC.core.mongo import mongodb
+from CUTEXMUSIC.core.mongo import pymongodb as mongodb
 
 
 onoffdb = mongodb.onoffper
