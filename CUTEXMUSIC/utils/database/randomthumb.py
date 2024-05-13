@@ -1,5 +1,5 @@
 from typing import Dict, List, Union
-from CUTEXMUSIC.core.mongo import pymongodb as mongodb
+from CUTEXMUSIC.core.mongo import mongodb
 
 themedb = mongodb.notesss
 
