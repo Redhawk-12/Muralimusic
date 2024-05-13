@@ -5,7 +5,6 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     ChatPermissions
 )
-
 from pyrogram.types import *
 from pyrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired,
@@ -19,7 +18,6 @@ from CUTEXMUSIC import app, LOGGER
 from config import *
 from pyrogram.types import Message
 from pyrogram.errors import RPCError
-from motor.motor_asyncio import AsyncIOMotorClient
 from pyrogram.types.user_and_chats import *
 
 def mention(user, name, mention=True):
@@ -48,17 +46,11 @@ MUTEIMG = [
     "https://telegra.ph/file/9aedda90fe8a0eedad19f.jpg",
 ]
 
-mongo_client = AsyncIOMotorClient(MURALI_DB)
-db = mongo_client["muted_users"]
-muted_users_collection = db["muted_users"]
 
 async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, message, time=None):
     if user_id == 6844821478:
             msg_text = "Why should I mute myself? Sorry, but I'm not stupid like you"
             return msg_text, False
-    muted_user = await muted_users_collection.find_one({"user_id": user_id, "chat_id": chat_id})
-    if not muted_user:
-        # If the user is not muted in the database, check if they are muted on Telegram
         try:
             # Get the member info from Telegram
             member = await app.get_chat_member(chat_id, user_id)
@@ -100,7 +92,6 @@ async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, message,
         ]
     ]
     await app.send_message(LOG_GROUP_ID, f"{user_mention} was muted by {admin_mention} in {message.chat.title}")
-    await muted_users_collection.insert_one({"user_id": user_id, "chat_id": chat_id})
     MUTEE = await message.reply_photo(
         photo=random.choice(MUTEIMG),
         caption=f"<u>{message.chat.title} Mᴜᴛᴇ Eᴠᴇɴᴛ 🔇</u>\n\n Nᴀᴍᴇ - {user_mention} \n Mᴜᴛᴇᴅ Bʏ - {admin_mention}",
@@ -112,8 +103,7 @@ async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, message,
 
 async def unmute_user(user_id, first_name, admin_id, admin_name, chat_id, message):
     # Check if the user is muted in the database
-    muted_user = await muted_users_collection.find_one({"user_id": user_id, "chat_id": chat_id})
-    if not muted_user:
+    
         # If the user is not muted in the database, check if they are muted on Telegram
         try:
             # Get the member info from Telegram
@@ -156,9 +146,7 @@ async def unmute_user(user_id, first_name, admin_id, admin_name, chat_id, messag
             ),
         ]
     ]
-    # Remove the user from the database
-    await muted_users_collection.delete_one({"user_id": user_id, "chat_id": chat_id})
-    # Send message to notify user is unmuted
+    
     UNMUTEE = await message.reply_photo(
         photo=random.choice(MUTEIMG),
         caption=f"<u>Uɴᴍᴜᴛᴇ Eᴠᴇɴᴛ </u>\n\n Nᴀᴍᴇ - {user_mention} \n Uɴᴍᴜᴛᴇᴅ Bʏ - {admin_mention}",
