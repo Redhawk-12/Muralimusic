@@ -1,6 +1,6 @@
 import random
 from CUTEXMUSIC import userbot
-from CUTEXMUSIC.core.mongo import mongodb
+from CUTEXMUSIC.core.mongo import pymongodb as mongodb
 
 db = mongodb.assistants
 
