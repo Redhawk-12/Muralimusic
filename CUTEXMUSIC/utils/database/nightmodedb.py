@@ -1,11 +1,11 @@
 from typing import Dict, List, Union
 from config import MURALI_DB
-from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
+from pymongo import MongoClient
 
 
-mongo = MongoCli(MURALI_DB).Rankings
+mongo = MongoClient(MURALI_DB)['CUTEMUSICXYZ']
 
-nightdb = mongo.nightmode
+impdb = mongo['nightmodedbb']
 
 
 async def nightmode_on(chat_id : int) :
