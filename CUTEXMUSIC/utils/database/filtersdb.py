@@ -1,4 +1,4 @@
-from CUTEXMUSIC.core.mongo import filtersdb
+from CUTEXMUSIC.core.mongo import filtersdb as filters
 
 
 
