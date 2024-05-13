@@ -1,6 +1,6 @@
 import config
 from config import PRIVATE_BOT_MODE
-from CUTEXMUSIC.core.mongo import pymongodb as mongodb
+from CUTEXMUSIC.core.mongo import mongodb
 
 channeldb = mongodb.cplaymode
 commanddb = mongodb.commands
