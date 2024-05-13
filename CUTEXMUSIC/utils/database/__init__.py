@@ -2,12 +2,13 @@ from .assistantdatabase import *
 from .memorydatabase import *
 from .mongodatabase import *
 from .randomthumb import *
-from async_pymongo import AsyncClient
+from pymongo import MongoClient
 from config import *
-
 
 DBNAME = "CUTIEXMUSICBOT"
 
-mongo = AsyncClient(MURALI_DB)
+# Connect to MongoDB
+mongo = MongoClient(MURALI_DB)
 dbname = mongo[DBNAME]
+
 
