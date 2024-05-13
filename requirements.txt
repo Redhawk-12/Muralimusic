@@ -6,7 +6,7 @@ gitpython
 hachoir
 heroku3
 lyricsgenius
-pymongo
+pymongo==4.6.2
 ntgcalls==1.1.2
 pillow==9.5.0 
 psutil
