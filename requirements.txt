@@ -34,3 +34,4 @@ gpytranslate
 apscheduler
 nekos.py==1.1.0
 emojis
+motor==3.4.0
