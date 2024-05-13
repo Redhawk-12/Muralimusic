@@ -8,27 +8,8 @@ from config import *
 TEMP_MONGODB = "mongodb+srv://CutexMusicdatabase:Cute937@cutedatabase.ubypaox.mongodb.net/?retryWrites=true&w=majority&appName=CuteDatabase"
 
 
-if config.MONGO_DB_URI is None:
-    LOGGER(__name__).warning("No MONGO DB URL found.")
-    temp_client = Client(
-        "CUTEXMUSIC",
-        bot_token=config.BOT_TOKEN,
-        api_id=config.API_ID,
-        api_hash=config.API_HASH,
-    )
-    temp_client.start()
-    info = temp_client.get_me()
-    username = info.username
-    temp_client.stop()
-    _mongo_async_ = AsyncIOMotorClient(TEMP_MONGODB)
-    _mongo_sync_ = AsyncIOMotorClient(TEMP_MONGODB)
-    mongodb = _mongo_async_[username]
-    pymongodb = _mongo_sync_[username]
-else:
-    _mongo_async_ = AsyncIOMotorClient(config.MONGO_DB_URI)
-    _mongo_sync_ = AsyncIOMotorClient(config.MONGO_DB_URI)
-    mongodb = _mongo_async_.CUTEXMUSIC
-    pymongodb = _mongo_sync_.CUTEXMUSIC
+_mongo_async_ = AsyncIOMotorClient(config.MONGO_DB_URI if config.MONGO_DB_URI else TEMP_MONGODB)
+pymongodb = _mongo_async_.CUTEXMUSIC if config.MONGO_DB_URI else _mongo_async_[info.username]
 
 #### next
 
