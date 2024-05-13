@@ -1,26 +1,47 @@
-from async_pymongo import AsyncClient as AsyncMongoClient
+from motor.motor_asyncio import AsyncIOMotorClient as _mongo_client_
+from pymongo import MongoClient
 from pyrogram import Client
 from typing import Dict, Union
 import config
 from ..logging import LOGGER
 from config import *
 
-
 TEMP_MONGODB = "mongodb+srv://CutexMusicdatabase:Cute937@cutedatabase.ubypaox.mongodb.net/?retryWrites=true&w=majority&appName=CuteDatabase"
 
-_mongo_async_ = AsyncMongoClient(config.MONGO_DB_URI if config.MONGO_DB_URI else TEMP_MONGODB)
+
+if config.MONGO_DB_URI is None:
+    LOGGER(__name__).warning("No MONGO DB URL found.")
+    temp_client = Client(
+        "CUTEXMUSIC",
+        bot_token=config.BOT_TOKEN,
+        api_id=config.API_ID,
+        api_hash=config.API_HASH,
+    )
+    temp_client.start()
+    info = temp_client.get_me()
+    username = info.username
+    temp_client.stop()
+    _mongo_async_ = _mongo_client_(TEMP_MONGODB)
+    _mongo_sync_ = MongoClient(TEMP_MONGODB)
+    mongodb = _mongo_async_[username]
+    pymongodb = _mongo_sync_[username]
+else:
+    _mongo_async_ = _mongo_client_(config.MONGO_DB_URI)
+    _mongo_sync_ = MongoClient(config.MONGO_DB_URI)
+    mongodb = _mongo_async_.CUTEXMUSIC
+    pymongodb = _mongo_sync_.CUTEXMUSIC
+
+#### next
 
 
-pymongodb = _mongo_async_.get_database('CUTEXMUSIC' if config.MONGO_DB_URI else info.username)
 
-
-mongo = AsyncMongoClient(config.MURALI_DB)
-db = mongo.get_database('MURALIBOTDATABASE')
-coupledb = db.get_collection('couple')
-afkdb = db.get_collection('afk')
-nightmodedb = db.get_collection('nightmode')
-notesdb = db.get_collection('notes')
-filtersdb = db.get_collection('filters')
+mongo = _mongo_client_(MURALI_DB)
+db = mongo.MURALIBOTDATABSE
+coupledb = db.couple
+afkdb = db.afk
+nightmodedb = db.nightmode
+notesdb = db.notes
+filtersdb = db.filters
 
 
 async def _get_lovers(cid: int):
@@ -55,3 +76,4 @@ async def save_couple(cid: int, date: str, couple: dict, img: str):
         {"$set": {"couple": lovers, "img": img}},
         upsert=True,
     )
+
