@@ -1,6 +1,6 @@
 from typing import Dict, List, Union
 
-from CUTEXMUSIC.core.mongo import pymongodb as db
+from CUTEXMUSIC.core.mongo import mongodb as db
 
 sudoersdb = db.sudoers
 
