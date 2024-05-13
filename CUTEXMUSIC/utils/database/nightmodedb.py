@@ -1,8 +1,6 @@
 from typing import Dict, List, Union
 from CUTEXMUSIC import app 
-from CUTEXMUSIC.core.mongo import db
-
-nightdb = db.nightdbb
+from CUTEXMUSIC.core.mongo import nightmodedb as nightdb
 
 
 async def nightmode_on(chat_id : int) :
