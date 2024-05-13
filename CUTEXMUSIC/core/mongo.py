@@ -19,7 +19,7 @@ if config.MONGO_DB_URI is None:
     info = temp_client.get_me()
     username = info.username
     temp_client.stop()
-    pymongodb = MongoClient(TEMP_MONGODB)[username]
+    pymongodb = MongoClient(TEMP_MONGODB).CUTEXMUSIC
 else:
     pymongodb = MongoClient(config.MONGO_DB_URI).CUTEXMUSIC
 
