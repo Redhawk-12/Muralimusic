@@ -27,9 +27,7 @@ numpy
 git+https://github.com/AsmSafone/SafoneAPI
 telegraph
 pyfiglet
-emojis
 opencv-python==4.9.0.80
-pyrogram==2.0.106
 search_engine_parser
 unidecode
 gpytranslate
