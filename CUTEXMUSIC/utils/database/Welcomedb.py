@@ -1,6 +1,7 @@
-from CUTEXMUSIC.utils.database import *
+from CUTEXMUSIC.core.mongo import db
 
-wlcm = dbname["welcome"]
+wlcm = db.welcome
+
 
 async def add_wlcm(chat_id : int):
     return await wlcm.insert_one({"chat_id" : chat_id})
