@@ -12,6 +12,7 @@ from pyrogram.errors.exceptions.bad_request_400 import (
 )
 from config import *
 import requests
+from CUTEXMUSIC import app, LOGGER
 import datetime
 import random 
 from pyrogram.errors import UserNotParticipant
