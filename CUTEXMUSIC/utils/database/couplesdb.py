@@ -1,7 +1,6 @@
-from CUTEXMUSIC.core.mongo import db
+from CUTEXMUSIC.core.mongo import coupledb
 from CUTEXMUSIC import app
 
-coupledb = db.couple
 
 async def _get_lovers(cid: int):
     lovers = await coupledb.find_one({"chat_id": cid})
