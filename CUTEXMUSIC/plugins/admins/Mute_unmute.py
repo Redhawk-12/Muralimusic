@@ -3,22 +3,20 @@ from pyrogram import filters, enums
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    ChatPermissions
+    ChatPermissions,
+    CallbackQuery
 )
-from pyrogram.types import *
+from pyrogram.types import Message
 from pyrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired,
     UserAdminInvalid,
     BadRequest
 )
 from logging import getLogger
-import random 
 import datetime
 from CUTEXMUSIC import app, LOGGER
 from config import *
-from pyrogram.types import Message
 from pyrogram.errors import RPCError
-from pyrogram.types.user_and_chats import *
 
 def mention(user, name, mention=True):
     if mention == True:
@@ -26,8 +24,6 @@ def mention(user, name, mention=True):
     else:
         link = f"[{name}](https://t.me/{user})"
     return link
-
-
 
 async def get_userid_from_username(username):
     try:
@@ -46,20 +42,16 @@ MUTEIMG = [
     "https://telegra.ph/file/9aedda90fe8a0eedad19f.jpg",
 ]
 
-
 async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, message, time=None):
     if user_id == 6844821478:
-            msg_text = "Why should I mute myself? Sorry, but I'm not stupid like you"
-            return msg_text, False
-        try:
-            # Get the member info from Telegram
-            member = await app.get_chat_member(chat_id, user_id)
-            if member.status == enums.ChatMemberStatus.RESTRICTED:
-             #  pass
-                return "This user is already muted.", False
-        except Exception as e:
-            return f"Error occurred while checking user status: {e}", False
-
+        msg_text = "Why should I mute myself? Sorry, but I'm not stupid like you"
+        return msg_text, False
+    try:
+        member = await app.get_chat_member(chat_id, user_id)
+        if member.status == enums.ChatMemberStatus.RESTRICTED:
+            return "This user is already muted.", False
+    except Exception as e:
+        return f"Error occurred while checking user status: {e}", False
     
     try:
         if time:
@@ -100,22 +92,15 @@ async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, message,
 
     return MUTEE, True
 
-
 async def unmute_user(user_id, first_name, admin_id, admin_name, chat_id, message):
-    # Check if the user is muted in the database
-    
-        # If the user is not muted in the database, check if they are muted on Telegram
-        try:
-            # Get the member info from Telegram
-            member = await app.get_chat_member(chat_id, user_id)
-            if member.status == enums.ChatMemberStatus.RESTRICTED:
-                pass
-              #  return "This user is not muted on Telegram.", False
-        except Exception as e:
-            return f"Error occurred while checking user status: {e}", False
+    try:
+        member = await app.get_chat_member(chat_id, user_id)
+        if member.status != enums.ChatMemberStatus.RESTRICTED:
+            return "This user is not muted on Telegram.", False
+    except Exception as e:
+        return f"Error occurred while checking user status: {e}", False
 
     try:
-        # Unmute the user on Telegram
         await app.restrict_chat_member(
             chat_id,
             user_id,
@@ -171,7 +156,6 @@ async def mute_command_handler(client, message):
         msg_text = "You don't have permission to mute someone"
         return await message.reply_text(msg_text)
 
-    # Extract the user ID from the command or reply
     if len(message.command) > 1:
         if message.reply_to_message:
             user_id = message.reply_to_message.from_user.id
@@ -201,11 +185,9 @@ async def mute_command_handler(client, message):
         await message.reply_text("Please specify a valid user or reply to that user's message")
         return
 
-    # Call mute_user function and handle the return value
     result, success = await mute_user(user_id, first_name, admin_id, admin_name, chat_id, message)
     if not success:
         return await message.reply_text(result)
-
 
 @app.on_callback_query(filters.regex("^unmute_"))
 async def unmutebutton(c: app, q: CallbackQuery):
@@ -238,7 +220,6 @@ async def unmutebutton(c: app, q: CallbackQuery):
     await q.message.edit_text(f"ᴜɴᴍᴜᴛᴇ ᴇᴠᴇɴᴛ \n\n ɴᴀᴍᴇ - {whoo.mention}! \n Uɴᴍᴜᴛᴇᴅ Bʏ {q.from_user.mention}")
     return
 
-
 @app.on_message(filters.command(["unmute"]))
 async def unmute_command_handler(client, message):
     chat = message.chat
@@ -256,7 +237,6 @@ async def unmute_command_handler(client, message):
         msg_text = "You don't have permission to unmute someone"
         return await message.reply_text(msg_text)
 
-    # Extract the user ID from the command or reply
     if len(message.command) > 1:
         try:
             user_id = int(message.command[1])
@@ -278,4 +258,3 @@ async def unmute_command_handler(client, message):
     msg_text, success = await unmute_user(user_id, first_name, admin_id, admin_name, chat_id, message)
     if not success:
         return await message.reply_text(msg_text)
-
