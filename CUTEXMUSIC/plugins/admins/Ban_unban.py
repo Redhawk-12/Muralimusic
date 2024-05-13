@@ -18,13 +18,11 @@ from logging import getLogger
 from CUTEXMUSIC import LOGGER
 from config import LOG_GROUP_ID
 from CUTEXMUSIC import app
-from motor.motor_asyncio import AsyncIOMotorClient
 from config import OWNER_ID
 from pyrogram.types import *
 
 LOGGER = getLogger(__name__)
 
-banned_users = []
 
 BANIMG = [
 "https://telegra.ph/file/3c6582c8dfd23c2f2b1f8.jpg",
@@ -32,9 +30,7 @@ BANIMG = [
 "https://telegra.ph/file/e1de039e0130450a238a6.jpg",
 ]
 
-mongo_client = AsyncIOMotorClient(MURALI_DB)
-db = mongo_client.cutemusicbandb
-banned_users_collection = db.banned_users
+
 
 
 def mention(user, name, mention=True):
@@ -66,15 +62,11 @@ async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, m
         if member.status == enums.ChatMemberStatus.BANNED:
             return "This user is already banned in the group.", False
         
-        # Check if the user is already banned in the database
-        banned_user = await banned_users_collection.find_one({"user_id": user_id})
-        if banned_user:
-            return "This user is already banned.", False
+    
             
         await app.ban_chat_member(chat_id, user_id)
         
         # Insert banned user into the database
-        await banned_users_collection.insert_one({"user_id": user_id, "chat_id": chat_id})
         
         url = "https://api.waifu.pics/sfw/kick"
         user_mention = mention(user_id, first_name)
@@ -227,8 +219,7 @@ async def ban_command_handler(client, message):
 #ahhh finally done
 
 async def unban_user(user_id, first_name, admin_id, admin_name, chat_id, message):
-    banned_user = await banned_users_collection.find_one({"user_id": user_id})
-    if not banned_user:
+    
         member = await app.get_chat_member(chat_id, user_id)
         if member.status == enums.ChatMemberStatus.BANNED:
             pass
@@ -238,7 +229,6 @@ async def unban_user(user_id, first_name, admin_id, admin_name, chat_id, message
     
     try:
         # Remove user from MongoDB collection
-        await banned_users_collection.delete_one({"user_id": user_id})
         
         # Unban user from the chat
         await app.unban_chat_member(chat_id, user_id)
