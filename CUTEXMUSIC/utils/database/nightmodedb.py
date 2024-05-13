@@ -1,11 +1,8 @@
 from typing import Dict, List, Union
-from config import MURALI_DB
-from pymongo import MongoClient
+from CUTEXMUSIC import app 
+from CUTEXMUSIC.core.mongo import db
 
-
-mongo = MongoClient(MURALI_DB)['CUTEMUSICXYZ']
-
-nightdb = mongo['nightmodedbb']
+nightdb = db.nightdbb
 
 
 async def nightmode_on(chat_id : int) :
