@@ -1,11 +1,13 @@
 from typing import Dict, List, Union
 from config import *
-from motor.motor_asyncio import AsyncIOMotorClient as CUTEEMUSIC
+from pymongo import MongoClient
 from CUTEXMUSIC import app
 
-mongo = CUTEEMUSIC(MURALI_DB).Rankings
 
-impdb = mongo.pretender
+
+mongo = MongoClient(MURALI_DB)['CUTEMUSICXYZ']
+
+impdb = mongo['pretender']
 
 
 async def usr_data(user_id: int) -> bool:
