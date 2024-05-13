@@ -1,13 +1,10 @@
 from typing import Dict, List, Union
 from config import *
-from pymongo import MongoClient
+from CUTEXMUSIC.core.mongo import db
 from CUTEXMUSIC import app
 
 
 
-mongo = MongoClient(MURALI_DB)['CUTEMUSICXYZ']
-
-impdb = mongo['pretender']
 
 
 async def usr_data(user_id: int) -> bool:
