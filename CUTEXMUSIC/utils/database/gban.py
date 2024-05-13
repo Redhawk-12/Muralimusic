@@ -1,5 +1,5 @@
 from typing import Dict, List, Union
-from CUTEXMUSIC.core.mongo import db
+from CUTEXMUSIC.core.mongo import pymongodb as db
 
 gbansdb = db.gban
 
