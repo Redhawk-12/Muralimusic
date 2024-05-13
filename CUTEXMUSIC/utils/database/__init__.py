@@ -2,7 +2,7 @@ from .assistantdatabase import *
 from .memorydatabase import *
 from .mongodatabase import *
 from .randomthumb import *
-from async_pymongo import AsyncClient
+from motor.motor_asyncio import AsyncIOMotorClient as AsyncClient
 from config import *
 
 
