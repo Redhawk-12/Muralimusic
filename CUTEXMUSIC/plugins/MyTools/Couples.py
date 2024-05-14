@@ -1,15 +1,12 @@
 import os 
 import random
 import asyncio
-from datetime import datetime 
-from telegraph import upload_file
 from PIL import Image , ImageDraw
-from pyrogram import *
-from pyrogram.types import *
-from pyrogram.enums import *
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message 
 from CUTEXMUSIC import app
-from CUTEXMUSIC.utils.database.couplesdb import _get_image, get_couple
-# heh
+
+
 button = [
        [
             InlineKeyboardButton(
@@ -18,25 +15,7 @@ button = [
         ]
 ]
 
-def dt():
-    now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M")
-    dt_list = dt_string.split(" ")
-    return dt_list
 
-
-def dt_tom():
-    a = (
-        str(int(dt()[0].split("/")[0]) + 1)
-        + "/"
-        + dt()[0].split("/")[1]
-        + "/"
-        + dt()[0].split("/")[2]
-    )
-    return a
-
-
-today = str(dt()[0])
 
 @app.on_message(
    filters.command(["couples", "couple", "couples@CuteXMusicBot"] ,prefixes=["/", "!", "%", ",", "", ".", "@", "#"])
@@ -113,10 +92,6 @@ async def ctest(_, message):
          await msg.delete()
          await asyncio.sleep(3000)
          await message.delete()
-         a = upload_file(f"test_{cid}.png")
-         for x in a:
-           img = "https://graph.org/" + x
-           couple = {"c1_id": c1_id, "c2_id": c2_id}
     except Exception as e:
         print(str(e))
     try:
