@@ -1,5 +1,4 @@
 import os
-from unidecode import unidecode
 from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
@@ -12,7 +11,6 @@ from CUTEXMUSIC.misc import SUDOERS
 from CUTEXMUSIC import app, userbot
 from CUTEXMUSIC.utils.database.Welcomedb import *
 from config import LOG_GROUP_ID
-from CUTEXMUSIC.utils.database.shalu_ban import admin_filter
 
 
 LOGGER = getLogger(__name__)
@@ -56,7 +54,7 @@ def welcomepic(pic, user, chat, id, uname, Thumbnail):
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp)
     pfp = pfp.resize(
-        (1298, 1298)
+        (1100, 1100)
     ) 
     draw = ImageDraw.Draw(background)
    # font = ImageFont.truetype('assets/font.ttf', size=160)
@@ -64,7 +62,7 @@ def welcomepic(pic, user, chat, id, uname, Thumbnail):
  #   draw.text((1680, 830), f'NAME: {unidecode(user)}', fill=(255, 255, 255), font=font)
    # draw.text((1680, 1120), f'ID: {id}', fill=(255, 255, 255), font=font)
   #  draw.text((1680, 1380), f"USERNAME : {uname}", fill=(255,255,255),font=font)
-    pfp_position = (132, 517)  
+    pfp_position = (120, 400)  
     background.paste(pfp, pfp_position, pfp)  
     background.save(
         f"downloads/welcome#{id}.png"
