@@ -38,7 +38,7 @@ def welcomepic(pic, user, chat, id, uname, Thumbnail):
         (900, 900)
     ) 
     draw = ImageDraw.Draw(background)
-    font2 = ImageFont.truetype('assets/font.ttf', size=50)
+    font2 = ImageFont.truetype('assets/font/Sofia-Regular.otf', size=50)
     draw.text((48, 37), f"CUTE X MUSIC", fill="orange", font=font2)
     pfp_position = (223, 317)  
     background.paste(pfp, pfp_position, pfp)  
