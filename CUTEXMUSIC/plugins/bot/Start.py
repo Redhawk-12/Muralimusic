@@ -285,33 +285,26 @@ async def start_comm(client, message: Message, _):
         out = private_panel(_, BOT_USERNAME, OWNER)
         response = requests.get("https://nekos.best/api/v2/neko").json()
         image_url = response["results"][0]["url"]
-        startmsg = await message.reply_text(
-            text=random.choice(EMOJIOS),
-        )
-        await asyncio.sleep(0.1)
-        b = await message.reply_text(f" Hᴇʟʟᴏ {message.from_user.mention}")
-        c = await message.reply_text(f"ᴍʏ ɴᴀᴍᴇ ɪs {app.mention} ")
-        await b.delete()
-        d = await message.reply_text(f"ᴍᴀᴅᴇ ʙʏ 𝑴𝑼𝑹𝜦𝑳𝛪...")
-        await c.delete()
-        await d.delete()
+        imgg = await message.reply_photo(photo=image_url)
+        await asyncio.sleep(0.001)
+        await imgg.edit_caption(f"Hᴇʟʟᴏ {message.from_user.mention}")
+        await asyncio.sleep(0.0001)
         Ahh = await message.reply_text(text=random.choice(EMOJIOS))
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(0.01)
         await Ahh.delete()
         jj = await message.reply_sticker(random.choice(STICKER))
         await asyncio.sleep(0.04)
         await jj.delete()
         let = await message.reply_text("ʟᴇᴛ ᴍᴇ sᴛᴀʀᴛ")
         await asyncio.sleep(0.002)
-        await startmsg.delete()
-        await let.edit("ʟᴇᴛ ᴍᴇ sᴛᴀʀᴛ....")
+        await let.edit("ʟᴇᴛ ᴍᴇ sᴛᴀʀᴛ......")
         STT = await message.reply_sticker(random.choice(STICKER))
+        await asyncio.sleep(0.0001)
         fff = await message.reply_sticker(random.choice(STICKER))
         await STT.delete()
         await asyncio.sleep(0.007)
         await let.delete()
         Hlo = await message.reply_sticker(random.choice(STICKER))
-        Rrr = await message.reply_sticker(random.choice(STICKER))
         await asyncio.sleep(0.02)
         await Hlo.delete()
         await message.reply_photo(
@@ -319,7 +312,6 @@ async def start_comm(client, message: Message, _):
                     caption=_["start_2"].format(message.from_user.mention, app.mention),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
-        await Rrr.delete()
         await fff.delete()
         if await is_on_off(config.LOG):
             sender_id = message.from_user.id
