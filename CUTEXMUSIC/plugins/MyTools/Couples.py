@@ -39,7 +39,7 @@ def dt_tom():
 today = str(dt()[0])
 
 @app.on_message(
-   filters.command(["couples", "couple"] ,prefixes=["/", "!", "%", ",", "", ".", "@", "#"])
+   filters.command(["couples", "couple", "couples@CuteXMusicBot"] ,prefixes=["/", "!", "%", ",", "", ".", "@", "#"])
 )
 async def ctest(_, message):
     cid = message.chat.id
