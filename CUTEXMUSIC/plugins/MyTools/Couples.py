@@ -5,6 +5,7 @@ from PIL import Image , ImageDraw
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message 
 from CUTEXMUSIC import app
+from pyrogram.enums import ChatAction
 
 
 button = [
@@ -20,7 +21,7 @@ button = [
 @app.on_message(
    filters.command(["couples", "couple", "couples@CuteXMusicBot"] ,prefixes=["/", "!", "%", ",", "", ".", "@", "#"])
 )
-async def ctest(_, message):
+async def couples(app, message):
     cid = message.chat.id
     if message.chat.type == ChatType.PRIVATE:
         return await message.reply_text("ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ɪs ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘs.")
@@ -87,11 +88,9 @@ async def ctest(_, message):
 
 **
 """
-
+         await app.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
          await message.reply_photo(f"test_{cid}.png", caption=TXT, reply_markup=InlineKeyboardMarkup(button),)
          await msg.delete()
-         await asyncio.sleep(3000)
-         await message.delete()
     except Exception as e:
         print(str(e))
     try:
