@@ -19,8 +19,6 @@ Zthumb = [
 ]
 
 
-
-
 def circle(pfp, size=(450, 450)):
     pfp = pfp.resize(size, Image.ANTIALIAS).convert("RGBA")
     bigsize = (pfp.size[0] * 3, pfp.size[1] * 3)
@@ -96,7 +94,7 @@ url=f"tg://openmessage?user_id=6844821478"),
 ))
 
     except Exception as e:
-        print(e)
+        print(str(e))
     try:
         os.remove(f"downloads/welcome#{user.id}.png")
         os.remove(f"downloads/pp{user.id}.png")
