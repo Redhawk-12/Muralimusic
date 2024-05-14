@@ -20,6 +20,14 @@ LOGGER = getLogger(__name__)
 Zthumb = [
 "Wel1",
 "Wel2",
+"Wel3",
+"Wel4",
+"Wel5",
+"Wel6",
+"Wel7",
+"Wel8",
+"Wel9",
+"Wel10",
 ]
 
 
