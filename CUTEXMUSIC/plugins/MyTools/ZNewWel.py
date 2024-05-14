@@ -62,7 +62,7 @@ def welcomepic(pic, user, chat, id, uname, Thumbnail):
     draw.text((48, 37), f"CUTEXMUSIC", fill=(255, 255, 255), font=font2)
    # draw.text((1680, 1120), f'ID: {id}', fill=(255, 255, 255), font=font)
   #  draw.text((1680, 1380), f"USERNAME : {uname}", fill=(255,255,255),font=font)
-    pfp_position = (185, 325)  
+    pfp_position = (200, 325)  
     background.paste(pfp, pfp_position, pfp)  
     background.save(
         f"downloads/welcome#{id}.png"
