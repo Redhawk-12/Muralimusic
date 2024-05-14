@@ -1,7 +1,7 @@
 import os
 from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatMemberUpdated
 import random
 from CUTEXMUSIC import app
 
