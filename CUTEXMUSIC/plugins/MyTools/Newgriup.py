@@ -11,7 +11,7 @@ from CUTEXMUSIC.utils.database import get_assistant
 async def on_new_chat_members(client: Client, message: Message):
     userbot = await get_assistant(message.chat.id)
     if (await client.get_me()).id in [user.id for user in message.new_chat_members]:
-        added_by = message.from_user.first_name if message.from_user else "ᴜɴᴋɴᴏᴡɴ ᴜsᴇʀ"
+        added_by = message.from_user.mention if message.from_user else "ᴜɴᴋɴᴏᴡɴ ᴜsᴇʀ"
         
         response = requests.get("https://nekos.best/api/v2/neko").json()
         image_url = response["results"][0]["url"]
