@@ -115,7 +115,7 @@ async def skip(cli, message: Message, _, chat_id):
                 duration_min,
                 user,
             reply_markup=InlineKeyboardMarkup(button),
-        )
+        ))
         db[chat_id][0]["mystic"] = run
         db[chat_id][0]["markup"] = "tg"
     elif "vid_" in queued:
