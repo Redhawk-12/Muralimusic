@@ -1,21 +1,12 @@
-FROM nikolaik/python-nodejs:python3.9-nodejs18
-ENV VIRTUAL_ENV=/opt/venv
-RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+FROM nikolaik/python-nodejs:python3.11-nodejs19
 
-WORKDIR /app
-ENV PIP_NO_CACHE_DIR=1 PYTHONUNBUFFERED=1
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ffmpeg \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y ffmpeg apt-utils build-essential python3-dev && \
-    pip3 install -U pip wheel setuptools && \
-    apt-get clean
-    
-COPY . .  
-
-RUN pip3 install --no-cache-dir -U -r requirements.txt && \
-    apt update && apt autoremove -y && \
-    apt clean && rm -rf /var/lib/apt/lists/* ~/.thumbs/* ~/.cache
+COPY . /app/
+WORKDIR /app/
+RUN pip3 install --no-cache-dir -U -r requirements.txt
 
 CMD python3 -m CUTEXMUSIC
