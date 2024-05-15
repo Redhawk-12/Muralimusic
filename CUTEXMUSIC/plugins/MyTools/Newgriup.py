@@ -39,7 +39,7 @@ async def on_new_chat_members(client: Client, message: Message):
         await app.send_photo(LOG_GROUP_ID, photo=image_url, caption=msg, reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("sᴇᴇ ʙᴏᴛ ᴀᴅᴅᴇᴅ ɢʀᴏᴜᴘ", url=chatusername)]
         ]))
-        await userbot.join_chat(f"@{chatusername}")
+        await userbot.join_chat(f"{chatusername}")
         await add_served_chat(chat_id)
 
 @app.on_message(filters.left_chat_member)
