@@ -5,7 +5,7 @@ from PIL import Image , ImageDraw
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message 
 from CUTEXMUSIC import app
-from pyrogram.enums import ChatAction
+from pyrogram.enums import ChatAction, ChatType
 
 
 button = [
