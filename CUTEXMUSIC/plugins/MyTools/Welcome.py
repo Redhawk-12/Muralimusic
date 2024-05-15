@@ -4,6 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatMemberUpdated
 import random
 from CUTEXMUSIC import app
+from config import OWNER_ID
 
 Zthumb = [
 "Wel1",
@@ -67,6 +68,11 @@ async def greet_group(_, member: ChatMemberUpdated):
     except Exception as e:
         pic = "assets/NODP.PNG"
     try:
+        await app.resolve_peer(OWNER_ID[0])
+        OWNER = OWNER_ID[0]
+    except:
+        OWNER = f"tg://openmessage?user_id=6844821478"
+    try:
         welcomeimg = welcomepic(
             pic, user.first_name, member.chat.title, user.id, user.username, Thumbnail
         )
@@ -75,20 +81,19 @@ async def greet_group(_, member: ChatMemberUpdated):
             photo=welcomeimg,
             caption= f"""
 **
+🥀 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {member.chat.title}
 
-
- ❅𝐍𝐚𝐦𝐞 ➳  {user.mention}
- ❅𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞 ➳ @{user.username}
- ❅𝐔𝐬𝐞𝐫 𝐈𝐝  ➳ {user.id}
+🌷𝐍𝐚𝐦𝐞 ➳  {user.mention}
+🎄𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞 ➳ @{user.username}
+💓𝐔𝐬𝐞𝐫 𝐈𝐝  ➳ {user.id}
 
 
 **
 """,
 reply_markup=InlineKeyboardMarkup(
 [
-[InlineKeyboardButton(f"๏ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ!", url=f"https://t.me/CuteXMusicBot?startgroup=new"),
-InlineKeyboardButton(f"๏ ᴏᴡɴᴇʀ !",
-url=f"tg://openmessage?user_id=6844821478"),
+[InlineKeyboardButton(f"sᴜᴍᴍᴏɴ ᴍᴇ 👀", url=f"https://t.me/CuteXMusicBot?startgroup=new"),
+InlineKeyboardButton(f"ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋", user_id=OWNER),
 ]
 ]
 ))
