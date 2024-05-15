@@ -1,5 +1,6 @@
 import os 
 import random
+from config import OWNER_ID
 import asyncio
 from PIL import Image , ImageDraw
 from pyrogram import Client, filters
@@ -7,14 +8,6 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from CUTEXMUSIC import app
 from pyrogram.enums import ChatAction, ChatType
 
-
-button = [
-       [
-            InlineKeyboardButton(
-                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CuteXMusicBot?startgroup=true",
-            )
-        ]
-]
 
 
 
@@ -53,6 +46,11 @@ async def couples(app, message):
             p2 = await app.download_media(photo2.big_file_id, file_name="pfp1.png")
          except Exception:
             p2 = "assets/PPIC.PNG"
+         try:
+            await app.resolve_peer(OWNER_ID[0])
+            OWNER = OWNER_ID[0]
+         except:
+            OWNER = f"tg://openmessage?user_id=6844821478"
 
          img1 = Image.open(f"{p1}")
          img2 = Image.open(f"{p2}")
@@ -89,7 +87,16 @@ async def couples(app, message):
 **
 """
          await app.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
-         await message.reply_photo(f"test_{cid}.png", caption=TXT, reply_markup=InlineKeyboardMarkup(button),)
+         await message.reply_photo(f"test_{cid}.png", caption=TXT, reply_markup=InlineKeyboardMarkup(
+                [
+       [
+            InlineKeyboardButton(
+                text="ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋",     user_id=OWNER
+            )
+        ]
+]
+
+              ),)
          await msg.delete()
     except Exception as e:
         print(str(e))
