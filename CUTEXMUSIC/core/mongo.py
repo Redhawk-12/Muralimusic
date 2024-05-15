@@ -37,7 +37,6 @@ else:
 
 mongo = _mongo_client_(MURALI_DB)
 db = mongo.MURALIBOTDATABSE
-coupledb = db.couple
 afkdb = db.afk
 nightmodedb = db.nightmode
 notesdb = db.notes
