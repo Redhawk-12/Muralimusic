@@ -19,7 +19,7 @@ async def couples(app, message):
     if message.chat.type == ChatType.PRIVATE:
         return await message.reply_text("ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ɪs ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘs.")
     try:
-         msg = await message.reply_text("ɢᴇɴᴇʀᴀᴛɪɴɢ ᴄᴏᴜᴘʟᴇs ɪᴍᴀɢᴇ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...")
+         msg = await message.reply_text("❣️")
          list_of_users = []
 
          async for i in app.get_chat_members(message.chat.id, limit=50):
