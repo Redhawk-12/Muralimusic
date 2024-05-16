@@ -65,7 +65,7 @@
 
 ![Cute Cat](https://media.giphy.com/media/IHOKbcGVANHiZ3IATx/giphy.gif)
 
-<h1 align="center"><b>✨ ᴏᴡɴᴇʀ ᴀɴᴅ ᴄʀᴇᴅɪᴛ ✨</b></h1>
+<h1 align="center"><b>✨ ᴄʀᴇᴅɪᴛ ✨</b></h1>
 <details>
 <summary><b>ᴄʀᴇᴅɪᴛ</b></summary>
 <br>
