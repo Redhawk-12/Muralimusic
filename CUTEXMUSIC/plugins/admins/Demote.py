@@ -1,26 +1,14 @@
 import random
 from pyrogram import filters, enums
-from pyrogram.types import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    ChatPermissions
-)
-from CUTEXMUSIC.utils.database.shalu_ban import admin_filter
-from CUTEXMUSIC import LOGGER
 from pyrogram.types import *
 from pyrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired,
     UserAdminInvalid,
     BadRequest
 )
-from logging import getLogger
-import random 
-import datetime
-from CUTEXMUSIC import app, userbot
+from CUTEXMUSIC import app
 import requests
-from CUTEXMUSIC.misc import SUDOERS
-from config import LOG_GROUP_ID
-from config import OWNER_ID
+from config import OWNER_ID, LOG_GROUP_ID
 
 def mention(user, name, mention=True):
     if mention == True:
@@ -41,7 +29,7 @@ async def get_userid_from_username(username):
 
 async def demote_user(user_id, first_name, admin_id, admin_name, chat_id, message, time=None):
     if user_id == 6844821478:
-        msg_text = "why should i demote myself? sorry but I'm not stupid like you"
+        msg_text = "ᴏʜ ᴍʏ ᴅᴏɢ ! "
         return msg_text, False
     try:
         # if owner check
