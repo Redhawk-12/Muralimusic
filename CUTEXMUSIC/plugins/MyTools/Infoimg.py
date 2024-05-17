@@ -76,12 +76,15 @@ INFO_TEXT = """
 """
 
 
-@app.on_message(filters.command(["info", "information", "userinfo"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
+
+
+
+
+@app.on_message(filters.command(["info", "information", "userinfo"], prefixes=["/", "!", "%", ",", ".", "@", "#"]))
 async def userinfo(_, message: Message):
     chat_id = message.chat.id
     thumb = random.choice(Zthumb)
 
-    
     if not message.reply_to_message and len(message.command) == 2:
         try:
             user_id = message.text.split(None, 1)[1]
@@ -99,16 +102,15 @@ async def userinfo(_, message: Message):
                 user_id=user_id,
                 first_name=name,
                 username=username,
-                thumb
+                thumb=thumb  # Added 'thumb' parameter
             )
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
-                id, name, username, mention, status, bio), reply_to_message_id=message.id)
+                id, name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
             if photo:
                 os.remove(photo)
         except Exception as e:
             await message.reply_text(str(e))
 
-    
     elif not message.reply_to_message:
         try:
             user_id = message.from_user.id
@@ -126,7 +128,7 @@ async def userinfo(_, message: Message):
                 user_id=user_id,
                 first_name=name,
                 username=username,
-                thumb
+                thumb=thumb  # Added 'thumb' parameter
             )
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
@@ -152,7 +154,8 @@ async def userinfo(_, message: Message):
             welcome_photo = await get_userinfo_img(
                 user_id=user_id,
                 first_name=name,
-                username=username
+                username=username,
+                thumb=thumb  # Added 'thumb' parameter
             )
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
@@ -160,4 +163,3 @@ async def userinfo(_, message: Message):
                 os.remove(photo)
         except Exception as e:
             await message.reply_text(str(e))
-
