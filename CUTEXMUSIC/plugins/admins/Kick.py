@@ -1,36 +1,14 @@
 from pyrogram import filters, enums
-from pyrogram.types import Message
-from pyrogram.types import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    ChatPermissions
-)
 from pyrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired,
     UserAdminInvalid,
     BadRequest
 )
-import requests
-import datetime
-import random 
-from logging import getLogger
-from CUTEXMUSIC import LOGGER
-from config import LOG_GROUP_ID
-from CUTEXMUSIC.misc import SUDOERS
+from config import LOG_GROUP_ID, OWNER_ID
 from CUTEXMUSIC import app
-from config import OWNER_ID
 from pyrogram.types import *
-from CUTEXMUSIC.utils.database.shalu_ban import admin_filter
 
-LOGGER = getLogger(__name__)
 
-KICKIMG = [
-"https://telegra.ph/file/28dabae9474f285169ce9.mp4",
-"https://telegra.ph/file/b46faa332fefceba96960.mp4",
-"https://telegra.ph/file/14aca8681ead3a54d1535.mp4",
-"https://telegra.ph/file/b4b0f22bb3eda42f61ff7.mp4",
-"https://telegra.ph/file/d428d5f3e7cc456372ef4.mp4",
-]
 
 button = [
        [
@@ -70,7 +48,7 @@ async def zkick_user(user_id, first_name, admin_id, admin_name, chat_id, message
         await app.ban_chat_member(chat_id, user_id)
         await app.unban_chat_member(chat_id, user_id)
     except ChatAdminRequired:
-        msg_text = "Ban rights? Nah, I'm just here for the digital high-fives 🙌\nGive me ban rights! 😡🥺"
+        msg_text = "Give Me Ban Rights Then use it 🥺"
         return msg_text, False
     except UserAdminInvalid:
         msg_text = "I won't ban an admin!!"
@@ -81,14 +59,14 @@ async def zkick_user(user_id, first_name, admin_id, admin_name, chat_id, message
     
     url = f"https://api.waifu.pics/sfw/kick"
     response = requests.get(url).json()
-    try:
-        up = response['url']
-    except KeyError:
-        up = random.choice(KICKIMG)
-        user_mention = mention(user_id, first_name)
-        admin_mention = mention(admin_id, admin_name)
-        await app.send_message(LOG_GROUP_ID, f"{user_mention} was kicked by {admin_mention} in {message.chat.title}")
+    up = response['url']
+    user_mention = mention(user_id, first_name)
+    admin_mention = mention(admin_id, admin_name)
+    await app.send_message(LOG_GROUP_ID, f"{user_mention} was kicked by {admin_mention} in {message.chat.title}")
 
+    
+        
+        
     ZYEAHHHH = await message.reply_video(up,
         caption=f"<u>{message.chat.title} Kɪᴄᴋ Eᴠᴇɴᴛ</u>\n\nName - {user_mention}\nKicked by {admin_mention}\n",
         reply_markup=InlineKeyboardMarkup(button)
@@ -148,13 +126,16 @@ async def kickme_command(client, message):
     user_id = message.from_user.id
     user_name = message.from_user.first_name
     chat_id = message.chat.id
+    url = f"https://api.waifu.pics/sfw/kick"
+    response = requests.get(url).json()
+    up = response['url']
 
     try:
         # kick him
         await app.ban_chat_member(chat_id, user_id)
         # Mention the kicked member in the group
-        await message.reply_photo(
-            photo=random.choice(KICKIMG),
+        await message.reply_video(
+            up,
             caption=f"Lᴏʟ ! {user_name} ʜᴀs ʙᴇᴇɴ sᴇʟғ ᴋɪᴄᴋᴇᴅ ᴏᴜᴛ ᴏғ ᴛʜɪs ɢʀᴏᴜᴘ 🤣 .",
             reply_markup=InlineKeyboardMarkup(button),
         )
