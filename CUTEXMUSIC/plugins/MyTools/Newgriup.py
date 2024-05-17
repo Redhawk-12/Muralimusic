@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram.types import Message
 from CUTEXMUSIC import app
 from CUTEXMUSIC.utils.database import get_served_chats, delete_served_chat, add_served_chat
 from config import LOG_GROUP_ID
@@ -36,9 +36,7 @@ async def on_new_chat_members(client: Client, message: Message):
             f"┣★ **ᴀᴅᴅᴇᴅ ʙʏ** › : {added_by} \n"
             f"┗━━━━━━━━━★ "
         )
-        await app.send_photo(LOG_GROUP_ID, photo=image_url, caption=msg, reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("sᴇᴇ ʙᴏᴛ ᴀᴅᴅᴇᴅ ɢʀᴏᴜᴘ", url=chatusername)]
-        ]))
+        await app.send_photo(LOG_GROUP_ID, photo=image_url, caption=msg)
         await userbot.join_chat(f"{chatusername}")
         await add_served_chat(chat_id)
 
@@ -59,8 +57,6 @@ async def on_left_chat_member(_, message: Message):
             f"๏ ʙᴏᴛ ʀᴇᴍᴏᴠᴇᴅ ʙʏ ➠ {remove_by}\n"
             f"๏ ʙᴏᴛ ɴᴀᴍᴇ ➠ @{app.username}"
         )
-        await app.send_photo(LOG_GROUP_ID, photo=image_url, caption=left, reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton(f"ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ", url=f"https://t.me/{app.username}?startgroup=true")]
-        ]))
+        await app.send_photo(LOG_GROUP_ID, photo=image_url, caption=left)
         await delete_served_chat(chat_id)
         await userbot.leave_chat(chat_id)
