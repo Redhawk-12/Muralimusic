@@ -5,8 +5,17 @@ from pyrogram.types import Message
 from typing import Union, Optional
 from CUTEXMUSIC import app
 from unidecode import unidecode
+import random
 
-# Function to download user's profile picture
+Zthumb = [
+"info1",
+"info2",
+"info3",
+"info4",
+"info5",
+"info6",
+]
+
 async def cute_download_pic(user_id):
     user = await app.get_users(user_id)
     if user.photo:
@@ -15,9 +24,9 @@ async def cute_download_pic(user_id):
     else:
         return "assets/NODP.PNG"
 
-# Function to generate user info image
-async def get_userinfo_img(user_id, first_name, username):
-    bg = Image.open("assets/INFOO.PNG")
+
+async def get_userinfo_img(user_id, first_name, username, thumb):
+    bg = Image.open(f"assets/info/{thumb}.png")
     photo_path = await cute_download_pic(user_id)
     img = Image.open(photo_path)
     mask = Image.new("L", img.size, 0)
@@ -26,18 +35,12 @@ async def get_userinfo_img(user_id, first_name, username):
 
     circular_img = Image.new("RGBA", img.size, (0, 0, 0, 0))
     circular_img.paste(img, (0, 0), mask)
-    resized = circular_img.resize((1300, 1300))
-    bg.paste(resized, (199, 600), resized)
+    resized = circular_img.resize((900, 900))
+    bg.paste(resized, (223, 317), resized)
     
-    first_name = unidecode(first_name) if first_name else "None"
-    username = unidecode(username) if username else "None"
-
+    
     draw = ImageDraw.Draw(bg)
-    font = ImageFont.truetype('assets/font.ttf', size=160)  
-    draw.text((1800, 1680), f"Name : {first_name}", font=font, fill=(255, 255, 255))
-    draw.text((1800, 1950), f"ID : {user_id}", font=font, fill=(255, 255, 255))
-    draw.text((1800, 2200), f"Username : {username}", font=font, fill=(255, 255, 255))
-
+    
     path = f"./userinfo_img_{user_id}.png"
     bg.save(path)
     return path
@@ -72,12 +75,13 @@ INFO_TEXT = """
 **ʙɪᴏ** ☞ {}
 """
 
-# Command to get user information
+
 @app.on_message(filters.command(["info", "information", "userinfo"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
 async def userinfo(_, message: Message):
     chat_id = message.chat.id
+    thumb = random.choice(Zthumb)
 
-    # If command is called with user ID
+    
     if not message.reply_to_message and len(message.command) == 2:
         try:
             user_id = message.text.split(None, 1)[1]
@@ -94,7 +98,8 @@ async def userinfo(_, message: Message):
             welcome_photo = await get_userinfo_img(
                 user_id=user_id,
                 first_name=name,
-                username=username
+                username=username,
+                thumb,
             )
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, name, username, mention, status, bio), reply_to_message_id=message.id)
@@ -103,7 +108,7 @@ async def userinfo(_, message: Message):
         except Exception as e:
             await message.reply_text(str(e))
 
-    # If command is called without user ID
+    
     elif not message.reply_to_message:
         try:
             user_id = message.from_user.id
@@ -120,7 +125,8 @@ async def userinfo(_, message: Message):
             welcome_photo = await get_userinfo_img(
                 user_id=user_id,
                 first_name=name,
-                username=username
+                username=username,
+                thumb,
             )
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
