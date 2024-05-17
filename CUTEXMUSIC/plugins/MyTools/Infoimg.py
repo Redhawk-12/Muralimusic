@@ -99,7 +99,7 @@ async def userinfo(_, message: Message):
                 user_id=user_id,
                 first_name=name,
                 username=username,
-                thumb,
+                thumb
             )
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, name, username, mention, status, bio), reply_to_message_id=message.id)
@@ -126,7 +126,7 @@ async def userinfo(_, message: Message):
                 user_id=user_id,
                 first_name=name,
                 username=username,
-                thumb,
+                thumb
             )
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
