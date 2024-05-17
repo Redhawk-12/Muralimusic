@@ -47,14 +47,14 @@ async def get_userid_from_username(username):
 
 async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, message, time=None):
     if user_id == 6844821478:
-        msg_text = "why should i ban myself? sorry but I'm not stupid like you"
+        msg_text = "sᴏʀʀʏ I Cᴀɴ'ᴛ ʙᴀɴ Mʏ Cᴜᴛᴇsᴛ Oᴡɴᴇʀ... 😒"
         return msg_text, False
     try:
         # Check if the user is currently a member of the group
         member = await app.get_chat_member(chat_id, user_id)
         # Check if the user is already banned in the group
         if member.status == enums.ChatMemberStatus.BANNED:
-            return "This user is already banned in the group.", False
+            return "ɪ ᴛʜɪɴᴋ ᴛʜɪs ᴜsᴇʀ ɪs ᴀʟʀᴇᴀᴅʏ ʙᴀɴɴᴇᴅ ʜᴇʀᴇ 👀.", False
 
         await app.ban_chat_member(chat_id, user_id)
         
@@ -91,16 +91,17 @@ async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, m
 
         return YEAHHHH, True
     except ChatAdminRequired:
-        msg_text = "Ban rights? Nah, I'm just here for the digital high-fives 🙌\nGive me ban rights! 😡🥺"
+        msg_text = "Gɪᴠᴇ Mᴇ Bᴀɴ Rɪɢʜᴛs Fɪʀsᴛ Tʜᴇɴ Usᴇ Iᴛ 😑 "
         return msg_text, False
     except UserAdminInvalid:
-        msg_text = "I won't ban an admin."
+        msg_text = "I ᴄᴀɴᴛ ʙᴀɴ ᴍʏ ʙᴇsᴛɪᴇs "
         return msg_text, False
     except UserNotParticipant:
-        msg = " This User Is Not a Participant"
+        msg = "ᴛʜɪs ᴜsᴇʀ ɪs ɴᴏᴛ ᴀ ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛ ʜᴇʀᴇ "
         return msg, False
     except Exception as e:
-        msg_text = f"Oops!!\n{e}"
+        msg_text = f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ\n{e}"
+        await app.send_message(f"An error Occurred in Ban - {e}")
         return msg_text, False
 
 @app.on_message(filters.command(["unban"]))
@@ -111,10 +112,9 @@ async def unban_command_handler(client, message):
     admin_name = message.from_user.first_name
     member = await chat.get_member(admin_id)
     if member.status not in [enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER]:
-        msg_text = "You don't have permission to unban someone"
+        msg_text = "ᴍʏ ᴍᴀsᴛᴇʀ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴ ᴛᴏ Uɴʙᴀɴ Sᴏᴍᴇᴏɴᴇ ✨"
         return await message.reply_text(msg_text)
 
-    # Extract the user ID from the command or reply
     if len(message.command) > 1:
         try:
             user_id = int(message.command[1])
@@ -122,20 +122,16 @@ async def unban_command_handler(client, message):
         except ValueError:
             user_obj = await get_userid_from_username(message.command[1])
             if user_obj is None:
-                return await message.reply_text("I can't find that user")
+                return await message.reply_text("ɪ ᴅɪᴅɴ'ᴛ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ 👀")
             user_id, first_name = user_obj
     elif message.reply_to_message:
         user_id = message.reply_to_message.from_user.id
         first_name = message.reply_to_message.from_user.first_name
     else:
-        await message.reply_text("Please specify a valid user or reply to that user's message")
+        await message.reply_text("ᴍʏ ᴄᴜᴛᴇ ᴍᴀsᴛᴇʀ sᴘᴇᴄɪғʏ ᴀ ᴠᴀʟɪᴅ ᴜsᴇʀ ᴏʀ ʀᴇᴘʟʏ ᴡɪᴛʜ ᴛʜᴀᴛ ᴜsᴇʀs ᴍᴇssᴀɢᴇ")
         return
 
-    # Check if user is banned in the database
-    banned_user = await banned_users_collection.find_one({"user_id": user_id})
-    if not banned_user:
-        msg_text = "This person is not banned."
-        return await message.reply_text(msg_text)
+    
 
     msg_text, result = await unban_user(user_id, first_name, admin_id, admin_name, chat_id, message)
     if result:
