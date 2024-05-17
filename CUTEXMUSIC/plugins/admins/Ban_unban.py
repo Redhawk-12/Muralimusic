@@ -1,10 +1,4 @@
 from pyrogram import filters, enums
-from pyrogram.types import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    ChatPermissions,
-    CallbackQuery
-)
 from pyrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired,
     UserAdminInvalid,
