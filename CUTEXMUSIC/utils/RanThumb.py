@@ -34,6 +34,13 @@ themes = [
     "CUTE30",
     "CUTE31",
     "CUTE32",
+    "CUTE33",
+    "CUTE34",
+    "CUTE35",
+    "CUTE36",
+    "CUTE37",
+    "CUTE38",
+    "CUTE39",
 ]
 
 
