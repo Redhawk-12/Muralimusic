@@ -1,20 +1,12 @@
 import random
 from pyrogram import filters, enums
-from pyrogram.types import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    ChatPermissions,
-    CallbackQuery
-)
-from pyrogram.types import Message
+from pyrogram.types import *
 from pyrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired,
     UserAdminInvalid,
     BadRequest
 )
-from logging import getLogger
-import datetime
-from CUTEXMUSIC import app, LOGGER
+from CUTEXMUSIC import app
 from config import *
 from pyrogram.errors import RPCError
 
@@ -34,22 +26,16 @@ async def get_userid_from_username(username):
     user_obj = [user.id, user.first_name]
     return user_obj
 
-LOGGER = getLogger(__name__)
 
-MUTEIMG = [
-    "https://telegra.ph/file/86ee02ba743844f861333.jpg",
-    "https://telegra.ph/file/5cb2cedfc9b9b4920153f.jpg",
-    "https://telegra.ph/file/9aedda90fe8a0eedad19f.jpg",
-]
 
 async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, message, time=None):
     if user_id == 6844821478:
-        msg_text = "Why should I mute myself? Sorry, but I'm not stupid like you"
+        msg_text = "ɪ ᴄᴀɴ'ᴛ ᴍᴜᴛᴇ ᴍʏ ᴏᴡɴᴇʀ"
         return msg_text, False
     try:
         member = await app.get_chat_member(chat_id, user_id)
         if member.status == enums.ChatMemberStatus.RESTRICTED:
-            return "This user is already muted.", False
+            return "ᴛʜɪꜱ ᴜꜱᴇʀ ɪꜱ ᴀʟʀᴇᴀᴅʏ ᴍᴜᴛᴇᴅ.", False
     except Exception as e:
         return f"Error occurred while checking user status: {e}", False
     
@@ -60,10 +46,10 @@ async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, message,
         else:
             await app.restrict_chat_member(chat_id, user_id, ChatPermissions())
     except ChatAdminRequired:
-        msg_text = "Give me mute rights! 😡🥺"
+        msg_text = "ꜰɪʀꜱᴛ ɢɪᴠᴇ ᴍᴇ ᴍᴜᴛᴇ ʀɪɢʜᴛꜱ ᴛʜᴇɴ ᴜꜱᴇ ɪᴛ 😠"
         return msg_text, False
     except UserAdminInvalid:
-        msg_text = "I won't mute an admin bruh!!"
+        msg_text = "ɪ ᴄᴀɴ'ᴛ ᴍᴜᴛᴇ ᴀɴ ᴀᴅᴍɪɴ 🌋"
         return msg_text, False
     except Exception as e:
         msg_text = f"Oops!!\n{e}"
@@ -96,7 +82,7 @@ async def unmute_user(user_id, first_name, admin_id, admin_name, chat_id, messag
     try:
         member = await app.get_chat_member(chat_id, user_id)
         if member.status != enums.ChatMemberStatus.RESTRICTED:
-            return "This user is not muted on Telegram.", False
+            return "ᴛʜɪꜱ ᴜꜱᴇʀ ɪꜱ ɴᴏᴛ ᴍᴜᴛᴇᴅ ɪɴ ᴛʜɪꜱ ɢʀᴏᴜᴘ 🌾.", False
     except Exception as e:
         return f"Error occurred while checking user status: {e}", False
 
@@ -111,7 +97,7 @@ async def unmute_user(user_id, first_name, admin_id, admin_name, chat_id, messag
             )
         )
     except ChatAdminRequired:
-        msg_text = "Mute rights? Nah, I'm just here for the digital high-fives 🙌\nGive me unmute rights! 😡🥺"
+        msg_text = "ꜰɪʀꜱᴛ ɢɪᴠᴇ ᴍᴇ ᴍᴜᴛᴇ ʀɪɢʜᴛꜱ ᴛʜᴇɴ ᴜꜱᴇ ɪᴛ 🥺"
         return msg_text, False
     except Exception as e:
         msg_text = f"Oops!!\n{e}"
@@ -150,10 +136,10 @@ async def mute_command_handler(client, message):
         if member.privileges.can_restrict_members:
             pass
         else:
-            msg_text = "You don't have permission to mute someone"
+            msg_text = "ᴍʏ ᴄᴜᴛᴇ ᴍᴀꜱᴛᴇʀ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪꜱꜱɪᴏɴ ᴛᴏ ᴍᴜᴛᴇ ꜱᴏᴍᴇᴏɴᴇ 👀"
             return await message.reply_text(msg_text)
     else:
-        msg_text = "You don't have permission to mute someone"
+        msg_text = "ᴍʏ ᴄᴜᴛᴇ ᴍᴀꜱᴛᴇʀ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪꜱꜱɪᴏɴ ᴛᴏ ᴍᴜᴛᴇ ꜱᴏᴍᴇᴏɴᴇ 🥀"
         return await message.reply_text(msg_text)
 
     if len(message.command) > 1:
