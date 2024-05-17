@@ -75,7 +75,7 @@ async def zkick_user(user_id, first_name, admin_id, admin_name, chat_id, message
 
 
 
-@app.on_message(filters.command("kick") & admin_filter)
+@app.on_message(filters.command("kick"))
 async def kickk_user(client, message):
     chat = message.chat
     reply = message.reply_to_message
