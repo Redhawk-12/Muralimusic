@@ -10,17 +10,14 @@ from pyrogram.errors.exceptions.bad_request_400 import (
     UserAdminInvalid,
     BadRequest
 )
-from config import *
 import requests
-from CUTEXMUSIC import app, LOGGER
+from CUTEXMUSIC import app
 import datetime
 import random 
 from pyrogram.errors import UserNotParticipant
-from logging import getLogger
 from config import LOG_GROUP_ID, OWNER_ID
 from pyrogram.types import *
 
-LOGGER = getLogger(__name__)
 
 
 BANIMG = [
@@ -101,7 +98,7 @@ async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, m
         return msg, False
     except Exception as e:
         msg_text = f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ\n{e}"
-        await app.send_message(f"An error Occurred in Ban - {e}")
+        await app.send_message(LOG_GROUP_ID, f"An error Occurred in Ban - {e}")
         return msg_text, False
 
 @app.on_message(filters.command(["unban"]))
@@ -150,10 +147,10 @@ async def ban_command_handler(client, message):
         if member.privileges.can_restrict_members:
             pass
         else:
-            msg_text = "You dont have permission to ban someone"
+            msg_text = "ᴍʏ ᴄᴜᴛᴇ ᴍᴀꜱᴛᴇʀ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪꜱꜱɪᴏɴ ᴛᴏ ʙᴀɴ ꜱᴏᴍᴇᴏɴᴇ 🪔"
             return await message.reply_text(msg_text)
     else:
-        msg_text = "You dont have permission to ban someone"
+        msg_text = "ᴍʏ ᴄᴜᴛᴇ ᴍᴀꜱᴛᴇʀ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪꜱꜱɪᴏɴ ᴛᴏ ʙᴀɴ ꜱᴏᴍᴇᴏɴᴇ 💓"
         return await message.reply_text(msg_text)
 
     # user id lelo reply se 
@@ -169,7 +166,7 @@ async def ban_command_handler(client, message):
             except:
                 user_obj = await get_userid_from_username(message.command[1])
                 if user_obj == None:
-                    return await message.reply_text("I can't find that user")
+                    return await message.reply_text("ɪ ᴅɪᴅɴ'ᴛ ꜰɪɴᴅ ᴛʜᴀᴛ ᴜꜱᴇʀ 🤨")
                 user_id = user_obj[0]
                 first_name = user_obj[1]
 
@@ -183,14 +180,10 @@ async def ban_command_handler(client, message):
         first_name = message.reply_to_message.from_user.first_name
         reason = None
     else:
-        await message.reply_text("Please specify a valid user or reply to that user's message")
+        await message.reply_text("ᴍʏ ᴄᴜᴛᴇ ᴍᴀsᴛᴇʀ sᴘᴇᴄɪғʏ ᴀ ᴠᴀʟɪᴅ ᴜsᴇʀ ᴏʀ ʀᴇᴘʟʏ ᴡɪᴛʜ ᴛʜᴀᴛ ᴜsᴇʀs ᴍᴇssᴀɢᴇ ❄️")
         return
 
-    # Check if user is already banned
-#    if user_id in banned_users:
-      #  msg_text = "This user is already banned."
-     #   return await message.reply_text(msg_text)
-
+    
     msg_text, result = await ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, message)
     if result == False:
         await message.reply_text(msg_text)
@@ -204,14 +197,14 @@ async def unbanbutton(c: app, q: CallbackQuery):
 
     if not user:
         await q.answer(
-            "You don't have enough permission to do this!\nStay in your limits!",
+            "ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴇɴᴏᴜɢʜ ʀɪɢʜᴛꜱ ᴛᴏ ᴅᴏ ᴛʜɪꜱ ꜱᴛᴀʏ ɪɴ ʏᴏᴜʀ ʟɪᴍɪᴛꜱ 🤨",
             show_alert=True,
         )
         return
 
     if not user.privileges.can_restrict_members and q.from_user.id != OWNER_ID:
         await q.answer(
-            "You don't have enough permission to do this!\nStay in your limits!",
+            "ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴇɴᴏᴜɢʜ ʀɪɢʜᴛꜱ ᴛᴏ ᴅᴏ ᴛʜɪꜱ ꜱᴛᴀʏ ɪɴ ʏᴏᴜʀ ʟɪᴍɪᴛꜱ ✨",
             show_alert=True,
         )
         return
@@ -232,7 +225,7 @@ async def unbanbutton(c: app, q: CallbackQuery):
                 url=f"https://t.me/CuteXMusicBot?startgroup=true",
             ),
             InlineKeyboardButton(
-                text="•ᴅᴇʟᴇᴛᴇ•",
+                text=" ᴅᴇʟᴇᴛᴇ ",
                 callback_data=f"close",
             ),
         ]
