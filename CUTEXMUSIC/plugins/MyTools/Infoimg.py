@@ -26,7 +26,7 @@ async def cute_download_pic(user_id):
 
 
 async def get_userinfo_img(user_id, first_name, username, thumb):
-    bg = Image.open(f"assets/info/{thumb}.png")
+    bg = Image.open(f"assets/Info/{thumb}.png")
     photo_path = await cute_download_pic(user_id)
     img = Image.open(photo_path)
     mask = Image.new("L", img.size, 0)
