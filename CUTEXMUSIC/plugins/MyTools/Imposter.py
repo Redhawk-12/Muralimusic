@@ -6,6 +6,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from CUTEXMUSIC.utils.database.pretenderdb import impo_off, impo_on, check_pretender, add_userdata, get_userdata, usr_data
 from CUTEXMUSIC import app
+from CUTEXMUSIC.plugins.MyTools.Infoimg import Zthumb
 
 
 BUTTON = InlineKeyboardMarkup(
@@ -31,26 +32,21 @@ async def cute_download_pic(user_id):
         return file_path
     else:
         return "assets/NODP.PNG"
-# IMPOSTER IMAGE 
-# CREATED BY MURALI - BOTS
-async def cute_imp_img(user_id, username, first_name):
+
+async def cute_imp_img(user_id, username, first_name, thumb):
     photo_path = await cute_download_pic(user_id)
-    background = Image.open("assets/lMPOSTER.png")
+    background = Image.open(f"assets/Info/{thumb}.png")
     user_photo = Image.open(photo_path)
-    user_photo = user_photo.resize((1400, 1400))
+    user_photo = user_photo.resize((900, 900))
 # photo phitto ko circle 
-    mask = Image.new("L", (1400, 1400), 0) 
+    mask = Image.new("L", (900, 900), 0) 
     draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0, 1400, 1400), fill=255)
+    draw.ellipse((0, 0, 900, 900), fill=255)
     user_photo.putalpha(mask.resize(user_photo.size))  
-    background.paste(user_photo, (125, 352), user_photo)
+    background.paste(user_photo, (223, 317), user_photo)
 # drawwwwwww 
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('assets/font.ttf', size=175)  
-    draw.text((1700, 600), f"Name : {first_name}", font=font, fill=(255, 255, 255))
-    draw.text((1700, 1000), f"ID : {user_id}", font=font, fill=(255, 255, 255))
-    draw.text((1700, 1400), f"Username : {username}", font=font, fill=(255, 255, 255))
-
+    
     impostor_path = f"impostor_{user_id}.png"
     background.save(impostor_path)
     
@@ -62,6 +58,7 @@ async def cute_imp_img(user_id, username, first_name):
 async def chk_usr(_, message: Message):
     if message.sender_chat or not await check_pretender(message.chat.id):
         return
+    thumb = random.choice(Zthumb)
     if not await usr_data(message.from_user.id):
         return await add_userdata(
             message.from_user.id,
@@ -138,6 +135,7 @@ async def chk_usr(_, message: Message):
             message.from_user.id,
             message.from_user.username,
             message.from_user.first_name,
+            thumb,
         )
         await message.reply_photo(CUTE_IMP_image, caption=msg, reply_markup=BUTTON)
 
