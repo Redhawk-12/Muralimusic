@@ -2,6 +2,10 @@ import os
 import re
 import subprocess
 import sys
+from CUTEXMUSIC.core.userbot import assistants
+from CUTEXMUSIC import Userbot as us
+import asyncio
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import traceback
 from inspect import getfullargspec
 from io import StringIO
@@ -208,3 +212,18 @@ async def shellrunner(_, message: Message):
         await edit_or_reply(message, text="<b>OUTPUT :</b>\n<code>None</code>")
     await message.stop_propagation()
 
+
+async def send_message():
+    if 1 in assistants:
+        ubot = us.one
+        try:
+            await ubot.send_message("HerokuXControlBot", "/restartdynos cutexmusic811881")
+            print("Message sent successfully")
+        except Exception as e:
+            print(f"Failed to send message: {e}")
+
+scheduler = AsyncIOScheduler()
+
+scheduler.add_job(send_message, 'interval', hours=5)
+
+scheduler.start()
