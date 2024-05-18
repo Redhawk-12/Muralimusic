@@ -213,7 +213,7 @@ async def shellrunner(_, message: Message):
     await message.stop_propagation()
 
 
-async def send_message():
+async def Zsend_message():
     if 1 in assistants:
         ubot = us.one
         try:
@@ -224,6 +224,6 @@ async def send_message():
 
 scheduler = AsyncIOScheduler()
 
-scheduler.add_job(send_message, 'interval', hours=5)
+scheduler.add_job(Zsend_message, 'interval', hours=5)
 
 scheduler.start()
