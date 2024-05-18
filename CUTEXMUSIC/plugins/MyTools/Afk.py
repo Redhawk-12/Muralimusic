@@ -11,6 +11,8 @@ from pyrogram import *
 from pyrogram.types import *
 from CUTEXMUSIC.utils.database.readable_time import get_readable_time
 from CUTEXMUSIC.utils.database.afkdb import add_afk, is_afk, remove_afk
+from CUTEXMUSIC.plugins.MyTools.Infoimg import Zthumb
+
 
 button = [
        [
@@ -31,51 +33,33 @@ async def cute_download_pic(user_id):
     else:
         return "assets/NODP.PNG"
 
-async def cute_afk_img(user_id, username, first_name):
+async def cute_afk_img(user_id, username, first_name, thumb):
     photo_path = await cute_download_pic(user_id)
-    background = Image.open("assets/AFK.PNG")
+    background = Image.open(f"assets/Info/{thumb}.png")
     user_photo = Image.open(photo_path)
-    user_photo = user_photo.resize((1205, 1205))
+    user_photo = user_photo.resize((900, 900))
 # photo phitto ko circle 
-    mask = Image.new("L", (1205, 1205), 0) 
+    mask = Image.new("L", (900, 900), 0) 
     draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0, 1205, 1205), fill=255)
+    draw.ellipse((0, 0, 900, 900), fill=255)
     user_photo.putalpha(mask.resize(user_photo.size))  
-    background.paste(user_photo, (303, 700), user_photo)
-    first_name = unidecode(first_name)
-    if username is not None:
-        username = unidecode(username)
-    else:
-        username = "None"
-# drawwwwwww 
+    background.paste(user_photo, (223, 317), user_photo)
+    
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('assets/font.ttf', size=175)  
-    draw.text((1700, 800), f"Name : {first_name}", font=font, fill=(255, 255, 255))
-    draw.text((1700, 1160), f"ID : {user_id}", font=font, fill=(255, 255, 255))
-    draw.text((1700, 1510), f"Username : {username}", font=font, fill=(255, 255, 255))
-
+    
     afk_path = f"afk_{user_id}.png"
     background.save(afk_path)
     
     return afk_path
 
 
-AFKPHOTO = [
-"https://telegra.ph/file/693c9e2f2f7440f52fca5.jpg"
-"https://telegra.ph/file/ff97ddfc83e155a9a153a.jpg",
-"https://telegra.ph/file/5b7698733583fd0348704.jpg",
-"https://telegra.ph/file/c365b6a90f135c2d6fc50.jpg",
-"https://telegra.ph/file/77b43f09c5b2cc4be72c7.jpg",
-"https://telegra.ph/file/e10bdc982ece5dce0fe7d.jpg",
-"https://telegra.ph/file/e10bdc982ece5dce0fe7d.jpg",
-"https://telegra.ph/file/41102e5854d9b05252546.jpg",
-]
 
 @app.on_message(filters.command(["afk", "brb"], prefixes=["/", "!", ""]))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
     user_id = message.from_user.id
+    thumb = random.choice(Zthumb)
     username= message.from_user.username
     name = message.from_user.first_name
     verifier, reasondb = await is_afk(user_id)
@@ -83,6 +67,7 @@ async def active_afk(_, message: Message):
             message.from_user.id,
             message.from_user.username,
             message.from_user.first_name,
+            thumb,
     )
     if verifier:
         await remove_afk(user_id)
@@ -263,10 +248,12 @@ async def chat_watcher_func(_, message):
     userid = message.from_user.id
     user_name = message.from_user.first_name
     name = message.from_user.first_name
+    thumb = random.choice(Zthumb)
     afkkphoto = await cute_afk_img(
             message.from_user.id,
             message.from_user.username,
             message.from_user.first_name,
+            thumb,
     )
     if message.entities:
         possible = ["/afk", f"/afk@{BOT_USERNAME}"]
@@ -286,6 +273,7 @@ async def chat_watcher_func(_, message):
         await remove_afk(userid)
         try:
             afktype = reasondb["type"]
+            thumb = random.choice(Zthumb)
             timeafk = reasondb["time"]
             data = reasondb["data"]
             reasonafk = reasondb["reason"]
@@ -339,6 +327,7 @@ reply_markup=InlineKeyboardMarkup(button),
             replied_first_name = message.reply_to_message.from_user.first_name
             replied_user_id = message.reply_to_message.from_user.id
             verifier, reasondb = await is_afk(replied_user_id)
+            thumb = random.choice(Zthumb)
             if verifier:
                 try:
                     afktype = reasondb["type"]
