@@ -13,7 +13,7 @@ from time import time
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from CUTEXMUSIC import app
-from config import OWNER_ID
+from config import OWNER_ID, LOG_GROUP_ID
 
 
 async def aexec(code, client, message):
@@ -213,17 +213,3 @@ async def shellrunner(_, message: Message):
     await message.stop_propagation()
 
 
-async def Zsend_message():
-    if 1 in assistants:
-        ubot = us.one
-        try:
-            await ubot.send_message("HerokuXControlBot", "/restartdynos cutexmusic811881")
-            print("Message sent successfully")
-        except Exception as e:
-            print(f"Failed to send message: {e}")
-
-scheduler = AsyncIOScheduler()
-
-scheduler.add_job(Zsend_message, 'interval', hours=5)
-
-scheduler.start()
