@@ -67,7 +67,7 @@ async def genimg_command_handler(bot, message):
 @app.on_message(filters.command("genimg"))
 async def generate_image(client, message):
     if len(message.command) < 2:
-        await message.reply_text("ɢɪᴠᴇ sᴏᴍᴇ ǫᴜᴇʀʏ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ᴀɴ ᴀɪ ʙᴀsᴇᴅ ɪᴍᴀɢᴇ.")
+        await message.reply_text("ɢɪᴠᴇ sᴏᴍᴇ ǫᴜᴇʀʏ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ᴀɴ ᴀɪ ʙᴀsᴇᴅ ᴄᴀʀᴛᴏᴏɴ ɪᴍᴀɢᴇ.")
         return
 
     text = message.text.split("/genimg ", 1)[1].replace(" ", "+")
@@ -79,6 +79,7 @@ async def generate_image(client, message):
     x = await message.reply_text("ɪᴛ ᴛᴀᴋᴇs ᴜᴘᴛᴏ 𝟹𝟶 sᴇᴄᴏɴᴅs ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...")
     data = response.json()
     image_url = data.get("image_url")
-    await message.reply_photo(image_url, caption=f"Type - Cartoon\n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention}\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} ||")   
+    await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
+    await message.reply_photo(image_url, caption=f"ᴛʏᴘᴇ - ᴄᴀʀᴛᴏᴏɴ ❣️\n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention} 🥀\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} 🌷||")   
     await x.delete()
         
