@@ -4,6 +4,7 @@ import io
 from config import LOG_GROUP_ID, OWNER_ID
 from CUTEXMUSIC import app 
 import random 
+import json
 from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
@@ -87,17 +88,19 @@ async def generate_image(client, message):
     
     response = requests.get(url)
     x = await message.reply_text("ɪᴛ ᴛᴀᴋᴇs ᴜᴘᴛᴏ 𝟹𝟶 sᴇᴄᴏɴᴅs ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...")
-    data = response.json()
-    image_url = data.get("image_url")
-    await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
-    await message.reply_photo(
-        image_url, 
-        caption=f"ᴛʏᴘᴇ - ᴄᴀʀᴛᴏᴏɴ ❣️\n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention} 🥀\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} 🌷||", 
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton(f"ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋", user_id=OWNER)]
-            ]
+    try:
+        data = response.json()
+        image_url = data.get("image_url")
+        await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
+        await message.reply_photo(
+            image_url, 
+            caption=f"ᴛʏᴘᴇ - ᴄᴀʀᴛᴏᴏɴ ❣️\n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention} 🥀\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} 🌷||", 
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton(f"ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋", user_id=OWNER)]
+                ]
+            )
         )
-    )
+    except ValueError:
+        await message.reply_text("sᴏʀʀʏ ᴛᴏᴅᴀʏ sᴇʀᴠᴇʀ ɪs ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴛʀʏ ᴛᴏᴍᴍᴏʀʀᴏᴡ.")
     await x.delete()
-
