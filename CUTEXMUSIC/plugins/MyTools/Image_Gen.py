@@ -27,9 +27,6 @@ headers = {
     "X-RapidAPI-Host": "chatgpt-42.p.rapidapi.com"
 }
 
-# MADE BY MURALI
-# THANKS TO RAPIDAPI FOR API 
-
 
 def send_query_to_api(query):
     payload = {
@@ -73,13 +70,15 @@ async def generate_image(client, message):
         await message.reply_text("ɢɪᴠᴇ sᴏᴍᴇ ǫᴜᴇʀʏ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ᴀɴ ᴀɪ ʙᴀsᴇᴅ ɪᴍᴀɢᴇ.")
         return
 
-    text = message.text.split("/genimgg ", 1)[1].replace(" ", "+")
+    text = message.text.split("/genimg ", 1)[1].replace(" ", "+")
     
     url = f"https://aiimage.hellonepdevs.workers.dev/?prompt={text}"
     
 
     response = requests.get(url)
+    x = await message.reply_text("ɪᴛ ᴛᴀᴋᴇs ᴜᴘᴛᴏ 𝟹𝟶 sᴇᴄᴏɴᴅs ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...")
     data = response.json()
     image_url = data.get("image_url")
-    await message.reply_photo(image_url)    
+    await message.reply_photo(image_url, caption=f"Given Prompt = {text} \n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention}\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} ||")   
+    await x.delete()
         
