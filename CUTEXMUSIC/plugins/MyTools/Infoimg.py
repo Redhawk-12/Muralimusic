@@ -14,6 +14,11 @@ Zthumb = [
 "info4",
 "info5",
 "info6",
+"info7",
+"info8",
+"info9",
+"info10",
+"info11",
 ]
 
 async def cute_download_pic(user_id):
