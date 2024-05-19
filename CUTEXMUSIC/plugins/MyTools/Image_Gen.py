@@ -34,7 +34,7 @@ def send_query_to_api(query):
     response = requests.post(url, json=payload, headers=headers)
     return response.json().get('generated_image', '')
 
-@app.on_message(filters.command(["ImageGen", "imggen"]))
+@app.on_message(filters.command(["ImageGen", "imggen", "genimage"]))
 async def genimg_command_handler(bot, message):
     try:
         await app.resolve_peer(OWNER_ID[0])
