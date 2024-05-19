@@ -79,6 +79,6 @@ async def generate_image(client, message):
     x = await message.reply_text("ɪᴛ ᴛᴀᴋᴇs ᴜᴘᴛᴏ 𝟹𝟶 sᴇᴄᴏɴᴅs ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...")
     data = response.json()
     image_url = data.get("image_url")
-    await message.reply_photo(image_url, caption=f"Given Prompt = {text} \n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention}\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} ||")   
+    await message.reply_photo(image_url, caption=f"Type - Cartoon\n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention}\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} ||")   
     await x.delete()
         
