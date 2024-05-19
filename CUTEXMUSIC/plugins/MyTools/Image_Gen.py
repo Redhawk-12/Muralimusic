@@ -39,7 +39,7 @@ def send_query_to_api(query):
     return response.json().get('generated_image', '')
 
 
-@app.on_message(filters.command(["ImageGen", "imggen", "genimg"]))
+@app.on_message(filters.command(["ImageGen", "imggen"]))
 async def genimg_command_handler(bot, message):
     try:
         query = " ".join(message.command[1:])
@@ -67,3 +67,19 @@ async def genimg_command_handler(bot, message):
 
 
 
+@app.on_message(filters.command("genimg"))
+async def generate_image(client, message):
+    if len(message.command) < 2:
+        await message.reply_text("ɢɪᴠᴇ sᴏᴍᴇ ǫᴜᴇʀʏ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ᴀɴ ᴀɪ ʙᴀsᴇᴅ ɪᴍᴀɢᴇ.")
+        return
+
+    text = message.text.split("/genimgg ", 1)[1].replace(" ", "+")
+    
+    url = f"https://aiimage.hellonepdevs.workers.dev/?prompt={text}"
+    
+
+    response = requests.get(url)
+    data = response.json()
+    image_url = data.get("image_url")
+    await message.reply_photo(image_url)    
+        
