@@ -23,7 +23,7 @@ from pyrogram.file_id import FileId
 
 
 from CUTEXMUSIC import app
-from CUTEXMUSIC.utils.error import capture_err
+from CUTEXMUSIC.utils.errors import capture_err
 from config import BOT_USERNAME
 
 
