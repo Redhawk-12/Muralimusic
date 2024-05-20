@@ -127,7 +127,7 @@ SET_CMDS = getenv("SET_CMDS", True)
 
 # You'll need a Pyrogram String Session for these vars. Generate String from our session generator bot @YukkiStringBot
 STRING1 = getenv("STRING_SESSION", "BQF8H3oABqV4CTaw9cUwkV7O9RHCBuqqu5zfb1Ondm9ONYnST3QJUgKb8ZY9hDK-rWcPTjFCTwGHjd-Jo0M8yqDECJbX6aU68-11CvF3VjhuEUtQDnxnTelGAWfFfdPuFc3mKVyOCK0ndulrBe0t05rkisSt4t_-6iOx1sefU-bP6YPK79uT2FafyNGS37WqPfU9BfydM5J6RVsKYhn8Xt0CJEd2_g5nkFxiMIuUt_eMWG91UU-RpXe8mRVIZRr0guvUhtdCP6u1bKWT29K0pxaPO-MW5md_UwpNZHVCeYFZQROU46rSO6NxwrZTUD3-I_piRI5_6ezSoLVswUaZy2aeNk4asgAAAAGesIw4AA")
-STRING2 = getenv("STRING_SESSION2", None)
+STRING2 = getenv("STRING_SESSION2", "BQF-U8EAnfsw1yvM9ySxq0WBbFe77pPF_GEV5WzqXlF1qw1yE035CLluhvNvrfFuGPy5Zbkzc2nVHbZYLcXHUTKhHun96dBM_uwOf3wJMacYTlj81wTYtKIJZjniaVDLNIkd-tAXpCQGZw8GX-v5jBIq6dHLb2Ly9_ukrWqlOzyGujWEDITsYjgRVFTKZXX4TvTcLWVtAOCx4f6i6Tif8e7CaoftD56qBjGaTft-4SjFu7HGSef99dMDQzLY9tdsj0oYrBdq8QAApv1n5Rt3LkFaoRnbGujtpPU5GThsGCgbke9Y4O_CiGLYWysd37iLXe0w8r3-HlOh98zke3IJpC3yzWTl6AAAAAGOg2_1AA")
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
 STRING5 = getenv("STRING_SESSION5", None)
@@ -193,6 +193,7 @@ DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
 SONG_DOWNLOAD_DURATION_LIMIT = int(
     time_to_seconds(f"{SONG_DOWNLOAD_DURATION}:00")
 )
+
 
 
 
