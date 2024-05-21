@@ -322,7 +322,7 @@ __HELP__ = """
     To kang a Sticker or an Image."""
 
 
-@app.on_message(filters.command(["packkang", "kang"]))
+@app.on_message(filters.command(["packkang"]))
 async def _packkang(app, message):
     txt = await message.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ....**")
     if not message.reply_to_message:
