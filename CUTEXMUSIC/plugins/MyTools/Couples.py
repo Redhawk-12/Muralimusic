@@ -7,7 +7,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message 
 from CUTEXMUSIC import app
 from pyrogram.enums import ChatAction, ChatType
-
+from CUTEXMUSIC.plugins.bot.Start import EMOJIOS
 
 
 
@@ -19,7 +19,7 @@ async def couples(app, message):
     if message.chat.type == ChatType.PRIVATE:
         return await message.reply_text("ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ɪs ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘs.")
     try:
-         msg = await message.reply_text("❣️")
+         msg = await message.reply_text(random.choice(EMOJIOS))
          list_of_users = []
 
          async for i in app.get_chat_members(message.chat.id, limit=50):
