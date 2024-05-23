@@ -86,14 +86,11 @@ async def generate_image(client, message):
     except:
         OWNER = f"tg://openmessage?user_id=6844821478"
     
-    response = requests.get(url)
-    x = await message.reply_text("ɪᴛ ᴛᴀᴋᴇs ᴜᴘᴛᴏ 𝟹𝟶 sᴇᴄᴏɴᴅs ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...")
+    x = await message.reply_text("ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...")
     try:
-        data = response.json()
-        image_url = data.get("image_url")
         await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
         await message.reply_photo(
-            image_url, 
+            url, 
             caption=f"ᴛʏᴘᴇ - ᴄᴀʀᴛᴏᴏɴ ❣️\n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention} 🥀\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} 🌷||", 
             reply_markup=InlineKeyboardMarkup(
                 [
