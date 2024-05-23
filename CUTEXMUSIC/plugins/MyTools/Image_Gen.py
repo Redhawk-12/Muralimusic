@@ -70,7 +70,7 @@ async def genimg_command_handler(bot, message):
     except Exception as e:
         await message.reply_text("sᴏʀʀʏ ᴛᴏᴅᴀʏ sᴇʀᴠᴇʀ ɪs ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴛʀʏ ᴛᴏᴍᴍᴏʀʀᴏᴡ.")
         await app.send_message(LOG_GROUP_ID, f"An error occurred in Image generation \n**Error:** {e}")
-
+# Fix
 @app.on_message(filters.command("genimg"))
 async def generate_image(client, message):
     if len(message.command) < 2:
