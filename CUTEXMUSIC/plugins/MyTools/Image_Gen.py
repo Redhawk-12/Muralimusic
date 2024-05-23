@@ -91,13 +91,14 @@ async def generate_image(client, message):
         await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
         await message.reply_photo(
             url, 
-            caption=f"ᴛʏᴘᴇ - ᴄᴀʀᴛᴏᴏɴ ❣️\n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention} 🥀\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} 🌷||", 
+            caption=f"<u>ᴛʏᴘᴇ - ᴄᴀʀᴛᴏᴏɴ ❣️</u>\n\nɪᴍᴀɢᴇ ɪs ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ {message.from_user.mention} 🥀\n\n||ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {app.mention} 🌷||", 
             reply_markup=InlineKeyboardMarkup(
                 [
                     [InlineKeyboardButton(f"ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋", user_id=OWNER)]
                 ]
             )
         )
-    except ValueError:
+    except Exception as e:
         await message.reply_text("sᴏʀʀʏ ᴛᴏᴅᴀʏ sᴇʀᴠᴇʀ ɪs ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴛʀʏ ᴛᴏᴍᴍᴏʀʀᴏᴡ.")
+        await app.send_message(LOG_GROUP_ID, f"an error in genimg \n {e}")
     await x.delete()
