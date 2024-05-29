@@ -1,6 +1,6 @@
 from CUTEXMUSIC.utils.formatters import time_to_seconds
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from config import SUPPORT_GROUP, SUPPORT_CHANNEL
+from config import SUPPORT_GROUP, SUPPORT_CHANNEL, OWNER_ID
 import random
 import math
 import config 
