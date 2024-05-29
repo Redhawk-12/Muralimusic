@@ -146,7 +146,7 @@ def stream_markup(_, videoid, chat_id):
                 callback_data=f"add_playlist {videoid}",
             ),
             InlineKeyboardButton(
-                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id={OWNER_ID}""
+                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id={OWNER_ID}"
             ),
         ],
         [
