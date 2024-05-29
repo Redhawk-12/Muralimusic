@@ -53,7 +53,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
                 callback_data=f"add_playlist {videoid}",
             ),
             InlineKeyboardButton(
-                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id=6844821478"
+                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id={OWNER_ID}"
             ),
         ],
         [
@@ -113,7 +113,7 @@ def telegram_markup_timer(_, chat_id, played, dur):
                 callback_data=f"add_playlist {videoid}",
             ),
             InlineKeyboardButton(
-                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id=6844821478"
+                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id={OWNER_ID}"
             ),
         ],
         [
@@ -146,7 +146,7 @@ def stream_markup(_, videoid, chat_id):
                 callback_data=f"add_playlist {videoid}",
             ),
             InlineKeyboardButton(
-                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id=6844821478"
+                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id={OWNER_ID}""
             ),
         ],
         [
@@ -377,7 +377,7 @@ def queue_markup(_, videoid, chat_id):
                 callback_data=f"add_playlist {videoid}",
             ),
             InlineKeyboardButton(
-                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id=6844821478"
+                text=" ᴅᴇᴠᴇʟᴏᴘᴇʀ ", url=f"tg://openmessage?user_id={OWNER_ID}"
             ),
         ],
         [
