@@ -78,7 +78,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
        [
             InlineKeyboardButton(
                 text="ᴀᴅᴅ ᴍᴇ",
-                url=f"https://t.me/CuteXMusicBot?startgroup=s&admin=delete_messages+manage_video_chats+pin_messages+invite_users+ban_users",
+                url=f"https://t.me/{app.username}?startgroup=s&admin=delete_messages+manage_video_chats+pin_messages+invite_users+ban_users",
             ),
         ], 
         [
@@ -93,7 +93,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
                     ),
            InlineKeyboardButton(
                text="sᴜᴘᴘᴏʀᴛ",
-               url=f"https://t.me/ZeroXCoderZ"
+               url=SUPPORT_GROUP,
            ),
         ],
       [
