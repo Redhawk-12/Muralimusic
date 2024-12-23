@@ -40,7 +40,7 @@ def welcomepic(pic, user, chat, id, uname, Thumbnail):
     ) 
     draw = ImageDraw.Draw(background)
     font2 = ImageFont.truetype('assets/fonts/Sofia-Regular.otf', size=50)
-    draw.text((48, 37), f"CUTE X MUSIC", fill="orange", font=font2)
+    draw.text((48, 37), f"𝗛𝗔𝗪𝗞 𝗠𝗨𝗦𝗜𝗖", fill="orange", font=font2)
     pfp_position = (223, 317)  
     background.paste(pfp, pfp_position, pfp)  
     background.save(
@@ -71,7 +71,7 @@ async def greet_group(_, member: ChatMemberUpdated):
         await app.resolve_peer(OWNER_ID[0])
         OWNER = OWNER_ID[0]
     except:
-        OWNER = f"tg://openmessage?user_id=6844821478"
+        OWNER = f"tg://openmessage?user_id=5269893269"
     try:
         welcomeimg = welcomepic(
             pic, user.first_name, member.chat.title, user.id, user.username, Thumbnail
@@ -92,7 +92,7 @@ async def greet_group(_, member: ChatMemberUpdated):
 """,
 reply_markup=InlineKeyboardMarkup(
 [
-[InlineKeyboardButton(f"sᴜᴍᴍᴏɴ ᴍᴇ 👀", url=f"https://t.me/CuteXMusicBot?startgroup=new"),
+[InlineKeyboardButton(f"sᴜᴍᴍᴏɴ ᴍᴇ 👀", url=f"https://t.me/HawkMusic_Robot?startgroup=new"),
 InlineKeyboardButton(f"ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋", user_id=OWNER),
 ]
 ]
