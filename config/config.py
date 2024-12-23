@@ -12,10 +12,10 @@ import requests
 load_dotenv()
 
 
-API_ID = int(getenv("API_ID", "25056193"))
-API_HASH = getenv("API_HASH", "08a9526ae6ded45858202660bbed2957")
-BOT_TOKEN = getenv("BOT_TOKEN", "7000169591:AAF-15siFllJW2_wrHraoo8LOuxAH1b40aI")
-BOT_USERNAME = getenv("BOT_USERNAME" , "CuteXMusicBot")
+API_ID = int(getenv("API_ID", "25565263"))
+API_HASH = getenv("API_HASH", "2ead39886be0c1fd87a43ad4d27383f3")
+BOT_TOKEN = getenv("BOT_TOKEN", "7104902055:AAFaFXnNztLTRD60HDTxQvcOMk_jx_EXKPc")
+BOT_USERNAME = getenv("BOT_USERNAME" , "HawkMusic_Robot")
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://MURALIDB:MURALIMURALI81477@murali81.2xzf8kq.mongodb.net/?retryWrites=true&w=majority&appName=MURALI81")
 
 # Custom max audio(music) duration for voice chat. set DURATION_LIMIT in variables with your own time(mins), Default to 60 mins.
@@ -29,14 +29,14 @@ SONG_DOWNLOAD_DURATION = int(
 )  # Remember to give value in Minutes
 
 # You'll need a Private Group ID for this.
-LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002135625803"))
+LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002258593361"))
 
 # A name for your Music bot.
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "༄𝐂𝐔𝐓𝐄 ✘ 𝐌𝐔𝐒𝐈𝐂 ࿐𝄟͢")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "•♫•♬• 𝗛𝗔𝗪𝗞 𝗠𝗨𝗦𝗜𝗖 •♬•♫•")
 
 # Your User ID.
 OWNER_ID = list(
-    map(int, getenv("OWNER_ID", "6844821478").split())
+    map(int, getenv("OWNER_ID", "5269893269").split())
 ) 
 
 # Get it from http://dashboard.heroku.com/account
@@ -48,19 +48,19 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 # For customized or modified Repository
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/ZeroXCoderz/MURALIMUSIC",
+    "https://github.com/Redhawk-12/Muralimusic",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 
 # GIT TOKEN ( if your edited repo is private)
-GIT_TOKEN = getenv("GIT_TOKEN", "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")
+GIT_TOKEN = getenv("GIT_TOKEN", "")
 
 # Only  Links formats are  accepted for this Var value.
 SUPPORT_CHANNEL = getenv(
-    "SUPPORT_CHANNEL", "https://t.me/ZeroXCoderz"
+    "SUPPORT_CHANNEL", "https://t.me/InsecureKid"
 )  
 SUPPORT_GROUP = getenv(
-    "SUPPORT_GROUP", "https://t.me/ZeroXCoderz"
+    "SUPPORT_GROUP", "https://t.me/+7dqm_Z8gbqI2YWU1"
 )  
 
 # Set it in True if you want to leave your assistant after a certain amount of time. [Set time via AUTO_LEAVE_ASSISTANT_TIME]
