@@ -9,7 +9,7 @@ START_BUT = [
        [
             InlineKeyboardButton(
                 text="ᴀᴅᴅ ᴍᴇ",
-                url=f"https://t.me/CuteXMusicBot?startgroup=s&admin=delete_messages+manage_video_chats+pin_messages+invite_users+ban_users",
+                url=f"https://t.me/HawkMusic_Robot?startgroup=s&admin=delete_messages+manage_video_chats+pin_messages+invite_users+ban_users",
             ),
         ], 
         [
@@ -20,11 +20,11 @@ START_BUT = [
       [
             InlineKeyboardButton(
                text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", 
-               url=f"tg://openmessage?user_id=6844821478",
+               url=f"tg://openmessage?user_id=5269893269",
                     ),
            InlineKeyboardButton(
                text="sᴜᴘᴘᴏʀᴛ",
-               url=f"https://t.me/MUSIC_WORL_SH"
+               url=f"https://t.me/+7dqm_Z8gbqI2YWU1"
            ),
         ],
       [
