@@ -17,7 +17,7 @@ from CUTEXMUSIC.plugins.MyTools.Infoimg import Zthumb
 button = [
        [
             InlineKeyboardButton(
-                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/CuteXMusicBot?startgroup=new",
+                text="Sᴜᴍᴍᴏɴ ᴍᴇ ✨",     url=f"https://t.me/HawkMusic_Robot?startgroup=new",
             ),
             InlineKeyboardButton(
                    text="〆 ᴄʟᴏsᴇ 〆", callback_data=f"close",
