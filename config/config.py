@@ -12,8 +12,8 @@ import requests
 load_dotenv()
 
 
-API_ID = int(getenv("API_ID", "25565263"))
-API_HASH = getenv("API_HASH", "2ead39886be0c1fd87a43ad4d27383f3")
+API_ID = int(getenv("API_ID", "23791517"))
+API_HASH = getenv("API_HASH", "cbd37141690ac36f9cacb5b2daa61bad")
 BOT_TOKEN = getenv("BOT_TOKEN", "7104902055:AAFaFXnNztLTRD60HDTxQvcOMk_jx_EXKPc")
 BOT_USERNAME = getenv("BOT_USERNAME" , "HawkMusic_Robot")
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://MURALIDB:MURALIMURALI81477@murali81.2xzf8kq.mongodb.net/?retryWrites=true&w=majority&appName=MURALI81")
