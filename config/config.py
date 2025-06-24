@@ -148,7 +148,7 @@ clean = {}
 autoclean = []
 
 
-MURALI_DB = getenv("MURALI_DB", "mongodb+srv://CUTEDATABASE0018:CUTEDATABASS92@cutedatabase.pyuohtj.mongodb.net/?retryWrites=true&w=majority&appName=CuteDataBase")
+MURALI_DB = getenv("MURALI_DB", "mongodb+srv://jckson8822:jckson8822@cluster0.knqdzyw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 # Images
 
