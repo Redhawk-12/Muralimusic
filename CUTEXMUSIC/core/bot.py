@@ -5,7 +5,7 @@ from CUTEXMUSIC.logging import LOGGER
 from pyrogram.enums import ChatMemberStatus
 
 # ✅ New log group ID
-LOG_GROUP_ID = -1002693180392
+LOG_GROUP_ID = -1002544240966
 
 class CUTEXBOT(Client):
     def __init__(self):
