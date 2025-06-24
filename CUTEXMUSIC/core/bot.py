@@ -1,9 +1,11 @@
 import sys
 from pyrogram import Client
-from config import API_ID, API_HASH, BOT_TOKEN, LOG_GROUP_ID, MUSIC_BOT_NAME
+from config import API_ID, API_HASH, BOT_TOKEN, MUSIC_BOT_NAME
 from CUTEXMUSIC.logging import LOGGER
 from pyrogram.enums import ChatMemberStatus
 
+# ✅ New log group ID
+LOG_GROUP_ID = -1002693180392
 
 class CUTEXBOT(Client):
     def __init__(self):
@@ -14,7 +16,7 @@ class CUTEXBOT(Client):
             bot_token=BOT_TOKEN,
             in_memory=True,
         )
-        LOGGER(__name__).info("Starting your bot...")
+        LOGGER(__name__).info("🚀 Starting your bot...")
 
     async def start(self):
         await super().start()
@@ -24,19 +26,30 @@ class CUTEXBOT(Client):
         self.name = me.first_name + " " + (me.last_name or "")
         self.mention = me.mention
 
+        LOGGER(__name__).info(f"🤖 Logged in as: {self.name} (@{self.username})")
+
+        # Debug print
+        print("✅ LOG_GROUP_ID is:", LOG_GROUP_ID)
+
         try:
             await self.send_message(
                 LOG_GROUP_ID,
-                f"✅ {MUSIC_BOT_NAME} started!\nID: {self.id}\nUsername: @{self.username}\nMade by Hawk 🥀",
+                f"✅ {MUSIC_BOT_NAME} started!\n\n🆔 ID: `{self.id}`\n📛 Username: @{self.username}\n🛠 Made by Hawk 🥀",
             )
-        except:
-            LOGGER(__name__).error("Bot couldn't send message to log group. Is it admin?")
+            LOGGER(__name__).info("📨 Sent startup message to log group.")
+        except Exception as e:
+            LOGGER(__name__).error(f"❌ Failed to send message to log group: {e}")
             sys.exit()
 
-        member = await self.get_chat_member(LOG_GROUP_ID, self.id)
-        if member.status != ChatMemberStatus.ADMINISTRATOR:
-            LOGGER(__name__).error("Please promote the bot as admin in the log group!")
+        try:
+            member = await self.get_chat_member(LOG_GROUP_ID, self.id)
+            if member.status != ChatMemberStatus.ADMINISTRATOR:
+                LOGGER(__name__).error("🚫 Bot is not admin in the log group.")
+                sys.exit()
+            LOGGER(__name__).info("✅ Bot is an admin in the log group.")
+        except Exception as e:
+            LOGGER(__name__).error(f"❌ Failed to fetch bot member status in log group: {e}")
             sys.exit()
 
-        LOGGER(__name__).info(f"Bot started as {self.name}")
+        LOGGER(__name__).info("🎉 Bot started successfully!")
         
