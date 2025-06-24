@@ -2,7 +2,7 @@ from .channelplay import register_channel_players
 from .database import init_db, close_db
 from .decorators import admin_only, handle_errors
 from .formatters import (
-    format_duration, 
+    format_duration,
     time_to_seconds,
     bytes_to_human
 )
@@ -19,11 +19,17 @@ __all__ = [
     'close_db',
     'admin_only',
     'handle_errors',
-    # ... other exports
+    'format_duration',
+    'time_to_seconds',
+    'bytes_to_human',
+    'setup_inline_handlers',
+    'restart_bot',
+    'update_bot',
+    'get_logs',
 ]
 
 def setup_utils(app):
     """Initialize all utility modules"""
     init_db()
     setup_inline_handlers(app)
-    # ... other setup
+    # any other setup
