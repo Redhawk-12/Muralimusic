@@ -56,8 +56,12 @@ START_IMG_URL = os.getenv("START_IMG_URL", image_url)
 
 def time_to_seconds(time):
     try:
-        return sum(int(x) * 60**i for i, x in enumerate(reversed(str(time).split(":")))
-    except:
+        stringt = str(time)
+        return sum(
+            int(x) * 60 ** i 
+            for i, x in enumerate(reversed(stringt.split(":")))
+        )
+    except (ValueError, AttributeError):
         return 0
 
 DURATION_LIMIT = time_to_seconds(f"{DURATION_LIMIT_MIN}:00")
