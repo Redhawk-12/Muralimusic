@@ -1,7 +1,7 @@
 import sys
 from pyrogram import Client
 import config
-from ..logging import LOGGER
+from CUTEXMUSIC.logging import LOGGER
 from pyrogram.enums import ChatMemberStatus
 
 
