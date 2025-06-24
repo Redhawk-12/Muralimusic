@@ -14,8 +14,8 @@ load_dotenv()
 
 API_ID = int(getenv("API_ID", "23791517"))
 API_HASH = getenv("API_HASH", "cbd37141690ac36f9cacb5b2daa61bad")
-BOT_TOKEN = getenv("BOT_TOKEN", "8123997116:AAGxmlSKpRABgoQrreKcQrL69qzUmIaHhQ0")
-BOT_USERNAME = getenv("BOT_USERNAME" , "KingKong_Robot")
+BOT_TOKEN = getenv("BOT_TOKEN", "7104902055:AAFaFXnNztLTRD60HDTxQvcOMk_jx_EXKPc")
+BOT_USERNAME = getenv("BOT_USERNAME" , "HawkMusic_Robot")
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://jckson8822:jckson8822@cluster0.knqdzyw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 # Custom max audio(music) duration for voice chat. set DURATION_LIMIT in variables with your own time(mins), Default to 60 mins.
