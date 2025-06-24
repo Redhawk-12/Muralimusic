@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.sqlite3
+CUTEXMUSIC/__pycache__/
+CUTEXMUSIC/utils/__pycache__/
+CUTEXMUSIC/core/__pycache__/
+CUTEXMUSIC/platforms/__pycache__/
+CUTEXMUSIC/utils/database/__pycache__/
+config/__pycache__/
+Yukkilogs.txt
