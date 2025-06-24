@@ -1,66 +1,55 @@
-import asyncio
 import sys
 from pyrogram import Client
-from pyrogram.errors import FloodWait
-from config import API_ID, API_HASH, BOT_TOKEN, LOG_GROUP_ID, FLOOD_WAIT_DELAY, MAX_RETRIES
+from config import API_ID, API_HASH, BOT_TOKEN, MUSIC_BOT_NAME
 from CUTEXMUSIC.logging import LOGGER
+from pyrogram.enums import ChatMemberStatus
+
+# âœ… New log group ID
+LOG_GROUP_ID = -1002693180392
 
 class CUTEXBOT(Client):
     def __init__(self):
         super().__init__(
-            name="MusicBot",
+            "MusicBot",
             api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
             in_memory=True,
-            sleep_threshold=30,
-            workers=4
         )
-        
-    async def safe_send_message(self, chat_id, text):
-        for attempt in range(MAX_RETRIES):
-            try:
-                return await self.send_message(chat_id, text)
-            except FloodWait as e:
-                wait_time = e.value + FLOOD_WAIT_DELAY
-                if attempt == MAX_RETRIES - 1:
-                    raise
-                LOGGER.warning(f"FloodWait: Sleeping for {wait_time} seconds")
-                await asyncio.sleep(wait_time)
+        LOGGER(__name__).info("ðŸš€ Starting your bot...")
 
     async def start(self):
-        LOGGER.info("Initializing bot...")
-        for attempt in range(MAX_RETRIES):
-            try:
-                await super().start()
-                me = await self.get_me()
-                self.username = me.username
-                self.id = me.id
-                self.name = me.first_name
-                
-                # Verify log group
-                if LOG_GROUP_ID:
-                    try:
-                        await self.safe_send_message(
-                            LOG_GROUP_ID,
-                            f"✅ Bot started!\n\nID: {self.id}\nUsername: @{self.username}"
-                        )
-                        member = await self.get_chat_member(LOG_GROUP_ID, self.id)
-                        if member.status != "administrator":
-                            LOGGER.error("Bot must be admin in log group")
-                            sys.exit(1)
-                    except Exception as e:
-                        LOGGER.error(f"Log group verification failed: {e}")
-                
-                LOGGER.info(f"Bot started as @{self.username}")
-                return
-                
-            except FloodWait as e:
-                if attempt == MAX_RETRIES - 1:
-                    raise
-                wait_time = e.value + FLOOD_WAIT_DELAY
-                LOGGER.warning(f"Startup FloodWait: Sleeping {wait_time}s")
-                await asyncio.sleep(wait_time)
-            except Exception as e:
-                LOGGER.error(f"Startup failed: {e}")
-                sys.exit(1)
+        await super().start()
+        me = await self.get_me()
+        self.username = me.username
+        self.id = me.id
+        self.name = me.first_name + " " + (me.last_name or "")
+        self.mention = me.mention
+
+        LOGGER(__name__).info(f"ðŸ¤– Logged in as: {self.name} (@{self.username})")
+
+        # Debug print
+        print("âœ… LOG_GROUP_ID is:", LOG_GROUP_ID)
+
+        try:
+            await self.send_message(
+                LOG_GROUP_ID,
+                f"âœ… {MUSIC_BOT_NAME} started!\n\nðŸ†” ID: `{self.id}`\nðŸ“› Username: @{self.username}\nðŸ›  Made by Hawk ðŸ¥€",
+            )
+            LOGGER(__name__).info("ðŸ“¨ Sent startup message to log group.")
+        except Exception as e:
+            LOGGER(__name__).error(f"âŒ Failed to send message to log group: {e}")
+            sys.exit()
+
+        try:
+            member = await self.get_chat_member(LOG_GROUP_ID, self.id)
+            if member.status != ChatMemberStatus.ADMINISTRATOR:
+                LOGGER(__name__).error("ðŸš« Bot is not admin in the log group.")
+                sys.exit()
+            LOGGER(__name__).info("âœ… Bot is an admin in the log group.")
+        except Exception as e:
+            LOGGER(__name__).error(f"âŒ Failed to fetch bot member status in log group: {e}")
+            sys.exit()
+
+        LOGGER(__name__).info("ðŸŽ‰ Bot started successfully!")
+        
